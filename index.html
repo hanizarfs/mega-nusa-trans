@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Title -->
+        <title>Beranda - Mega Nusa Trans</title>
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Alpine JS -->
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+        <!-- Lucide Icons -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#0011FF",
+                            secondary: "#FFEB00",
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+
+        <!-- CLOAK STYLE -->
+        <style>
+            [x-cloak] {
+                display: none !important;
+            }
+
+            html,
+            body,
+            main,
+            section {
+                overflow-x: hidden;
+            }
+        </style>
+
+        <style>
+            @keyframes gradient-x {
+                0%,
+                100% {
+                    background-position: 0%;
+                }
+                50% {
+                    background-position: 100%;
+                }
+            }
+
+            .animate-gradient-x {
+                background-size: 200% auto;
+                animation: gradient-x 3s linear infinite;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- NAVBAR -->
+        <header x-data="{ open: false, scrolled: false }" x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)" :class="scrolled ? 'bg-primary shadow-lg' : 'bg-transparent'" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between transition-all duration-300">
+                <!-- LOGO -->
+                <a href="index.html" class="flex items-center gap-3">
+                    <!-- Logo Image -->
+                    <img src="./assets/logo.webp" alt="Logo Mega Nusa Trans" class="w-12 h-12 object-contain" />
+
+                    <!-- Text -->
+                    <div class="flex flex-col leading-tight">
+                        <span class="text-white text-lg font-bold transition"> Mega Nusa Trans </span>
+
+                        <span class="text-white/70 text-xs transition"> Aman, Nyaman, Tepat Tujuan </span>
+                    </div>
+                </a>
+                <!-- MENU DESKTOP -->
+                <nav class="hidden md:flex items-center gap-8 font-medium transition" :class="scrolled ? 'text-white' : 'text-white'">
+                    <a href="index.html" class="hover:opacity-80 transition">Beranda</a>
+                    <a href="#" class="hover:opacity-80 transition">Layanan</a>
+                    <a href="rute.html" class="hover:opacity-80 transition">Rute</a>
+                    <a href="#" class="hover:opacity-80 transition">Testimoni</a>
+                    <a href="#" class="hover:opacity-80 transition">Tentang</a>
+                </nav>
+
+                <!-- CTA + LOGIN -->
+                <div class="hidden md:flex items-center gap-3">
+                    <!-- BUTTON PESAN -->
+                    <a href="#" class="group inline-flex items-center gap-2 bg-secondary text-black font-semibold px-5 py-2 rounded-lg transition-all duration-300 hover:shadow-xl hover:bg-gradient-to-r hover:from-secondary hover:via-yellow-300 hover:to-secondary">
+                        <span>Pesan Sekarang</span>
+
+                        <i data-lucide="send" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"> </i>
+                    </a>
+
+                    <!-- LOGIN ADMIN -->
+                    <a
+                        href="login.html"
+                        :class="scrolled 
+     ? 'border-white/30 text-white hover:bg-white hover:text-primary hover:border-white' 
+     : 'border-white/30 text-white hover:bg-primary hover:text-white hover:border-primary'"
+                        class="group flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 hover:shadow-lg hover:scale-105"
+                    >
+                        <i data-lucide="user" class="w-5 h-5 transition-transform duration-300 group-hover:scale-110"> </i>
+                    </a>
+                </div>
+
+                <!-- HAMBURGER -->
+                <button @click="open = !open" class="md:hidden">
+                    <i data-lucide="menu" class="w-6 h-6 transition" :class="scrolled ? 'text-white' : 'text-gray-800'"></i>
+                </button>
+            </div>
+
+            <!-- MOBILE MENU -->
+            <div x-show="open" x-transition @click.away="open=false" class="md:hidden shadow-lg px-4 pb-4 transition" :class="scrolled ? 'bg-primary text-white' : 'bg-white text-gray-700'">
+                <nav class="flex flex-col gap-4 font-medium">
+                    <a href="#" class="hover:opacity-80">Beranda</a>
+                    <a href="#" class="hover:opacity-80">Layanan</a>
+                    <a href="#" class="hover:opacity-80">Rute</a>
+                    <a href="#" class="hover:opacity-80">Testimoni</a>
+                    <a href="#" class="hover:opacity-80">Tentang</a>
+
+                    <div class="flex items-center gap-3">
+                        <!-- CTA MOBILE -->
+                        <a href="#" class="group inline-flex items-center gap-2 bg-secondary text-black font-semibold px-5 py-2 rounded-lg transition-all duration-300 hover:shadow-xl hover:bg-gradient-to-r hover:from-secondary hover:via-yellow-300 hover:to-secondary">
+                            <span>Pesan Sekarang</span>
+
+                            <i data-lucide="send" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"> </i>
+                        </a>
+
+                        <!-- LOGIN ADMIN -->
+                        <a
+                            href="login.html"
+                            :class="scrolled 
+   ? 'border-white/30 text-white hover:bg-white hover:text-primary hover:border-white' 
+   : 'border-gray-300 text-gray-700 hover:bg-primary hover:text-white hover:border-primary'"
+                            class="group flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-300 hover:shadow-lg hover:scale-105"
+                        >
+                            <i data-lucide="user" class="w-5 h-5 transition-transform duration-300 group-hover:scale-110"> </i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- HERO SECTION -->
+            <section id="beranda" x-data="heroSlider()" x-init="start()" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <!-- BACKGROUND SLIDER -->
+                <div class="absolute inset-0">
+                    <template x-for="(slide, index) in slides" :key="index">
+                        <div class="absolute inset-0 transition-all duration-[1200ms]" :class="current === index ? 'opacity-100' : 'opacity-0'">
+                            <img :src="slide.image" class="w-full h-full object-cover" />
+
+                            <!-- CLEAN OVERLAY -->
+                            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- HERO TEXT -->
+                <div class="relative z-10 text-center text-white px-6 mx-auto py-32">
+                    <div :key="current" x-transition:enter="transition ease-out duration-700" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0">
+                        <!-- TITLE -->
+                        <h1 class="text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight mb-6" x-html="slides[current].title"></h1>
+
+                        <!-- SUBTITLE -->
+                        <p class="text-gray-200 text-base md:text-xl font-semibold max-w-2xl mx-auto" x-text="slides[current].subtitle"></p>
+                    </div>
+                </div>
+
+                <!-- BOOKING FLOATING -->
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full top-[325px] px-4 z-20">
+                    <div id="booking-cepat" x-data="bookingForm()" x-init="init()" class="max-w-5xl mx-auto bg-white/95 backdrop-blur-md border border-gray-100 rounded-2xl shadow-2xl p-5 space-y-4">
+                        <!-- TOP INFO -->
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center gap-2 text-gray-600">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i>
+                                <span>Booking cepat & konfirmasi langsung</span>
+                            </div>
+                        </div>
+
+                        <!-- FORM -->
+                        <div class="grid md:grid-cols-5 gap-3 items-end">
+                            <!-- LAYANAN -->
+                            <div class="relative">
+                                <i data-lucide="car" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+                                <select x-model="form.layanan" class="w-full border rounded-xl pl-9 pr-3 py-2.5 text-sm focus:ring-2 focus:ring-primary">
+                                    <option value="" disabled selected>Pilih Layanan</option>
+                                    <option value="Travel">Travel Door-to-Door</option>
+                                    <option value="Carter">Carter Mobil + Sopir</option>
+                                    <option value="Paket">Kirim Paket</option>
+                                </select>
+                            </div>
+
+                            <!-- ASAL -->
+                            <div class="relative" x-data="dropdownSearch(kotaList, form, 'asal')" x-init="init()">
+                                <i data-lucide="map-pin" class="absolute left-3 top-3 w-4 h-4 text-gray-400"></i>
+                                <input type="text" x-model="selected" @click="openDropdown()" readonly placeholder="Kota Asal" class="w-full border rounded-xl pl-9 pr-10 py-2.5 text-sm cursor-pointer bg-white focus:ring-2 focus:ring-primary" />
+
+                                <button @click.stop="$root.swapKota()" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-primary">
+                                    <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+                                </button>
+
+                                <div x-show="open" @click.away="open=false" class="absolute z-50 mt-1 w-full bg-white border rounded-xl shadow-lg">
+                                    <input type="text" x-model="search" @input="filter()" placeholder="Cari kota..." class="w-full px-3 py-2 border-b text-sm focus:outline-none" />
+
+                                    <div class="max-h-40 overflow-auto">
+                                        <template x-for="item in filtered" :key="item">
+                                            <div @click="select(item)" class="px-3 py-2 text-sm cursor-pointer" :class="isSelected(item) ? 'bg-primary text-white' : 'hover:bg-primary hover:text-white'">
+                                                <span x-text="item"></span>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TUJUAN -->
+                            <div class="relative" x-data="dropdownSearch(kotaList, form, 'tujuan')" x-init="init()">
+                                <i data-lucide="map-pin" class="absolute left-3 top-3 w-4 h-4 text-gray-400"></i>
+                                <input type="text" x-model="selected" @click="openDropdown()" readonly placeholder="Kota Tujuan" class="w-full border rounded-xl pl-9 pr-10 py-2.5 text-sm cursor-pointer bg-white focus:ring-2 focus:ring-primary" />
+
+                                <div x-show="open" @click.away="open=false" class="absolute z-50 mt-1 w-full bg-white border rounded-xl shadow-lg">
+                                    <input type="text" x-model="search" @input="filter()" placeholder="Cari kota..." class="w-full px-3 py-2 border-b text-sm focus:outline-none" />
+
+                                    <div class="max-h-40 overflow-auto">
+                                        <template x-for="item in filtered" :key="item">
+                                            <div @click="select(item)" class="px-3 py-2 text-sm cursor-pointer" :class="isSelected(item) ? 'bg-primary text-white' : 'hover:bg-primary hover:text-white'">
+                                                <span x-text="item"></span>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TANGGAL -->
+                            <div class="relative">
+                                <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+                                <input type="date" x-model="form.tanggal" :min="today" class="w-full border rounded-xl pl-9 pr-3 py-2.5 text-sm focus:ring-2 focus:ring-primary" />
+                            </div>
+
+                            <!-- BUTTON -->
+                            <div class="flex items-center h-full">
+                                <button
+                                    :disabled="!isValid()"
+                                    @click="kirimWA()"
+                                    :class="isValid() 
+                    ? 'bg-primary text-white hover:shadow-xl hover:scale-105' 
+                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'"
+                                    class="h-full flex-1 font-semibold text-sm px-3 py-2 rounded-xl transition-all duration-300"
+                                >
+                                    Pesan
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- BOTTOM INFO -->
+                        <div class="text-xs text-gray-500 pt-3 border-t">Kami membantu perjalanan, pengiriman, dan carter mobil dengan layanan terbaik 🚀</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HERO SCRIPT -->
+            <script>
+                function heroSlider() {
+                    return {
+                        current: 0,
+                        slides: [
+                            {
+                                image: "http://mega-nusa-travel.test/assets/images/landingpage/hero-1.webp",
+                                title: 'Travel Antar Kota <span class="text-secondary">Tanpa Ribet</span>',
+                                subtitle: "Berangkat langsung dari rumah tanpa perlu ke terminal.",
+                            },
+                            {
+                                image: "http://mega-nusa-travel.test/assets/images/landingpage/hero-2.webp",
+                                title: 'Perjalanan <span class="text-secondary">Lebih Tenang</span>',
+                                subtitle: "Driver berpengalaman dan armada selalu terawat.",
+                            },
+                            {
+                                image: "http://mega-nusa-travel.test/assets/images/landingpage/hero-3.webp",
+                                title: 'Butuh Travel <span class="text-secondary">Hari Ini?</span>',
+                                subtitle: "Cek jadwal dan booking sekarang juga dengan cepat.",
+                            },
+                        ],
+                        start() {
+                            setInterval(() => {
+                                this.current = (this.current + 1) % this.slides.length;
+                            }, 5000);
+                        },
+                    };
+                }
+            </script>
+
+            <!-- BOOKING SCRIPT -->
+            <script>
+                function bookingForm() {
+                    return {
+                        kotaList: ["Bandung", "Ciamis"],
+                        today: "",
+                        form: { layanan: "", asal: "", tujuan: "", tanggal: "" },
+
+                        swapKota() {
+                            [this.form.asal, this.form.tujuan] = [this.form.tujuan, this.form.asal];
+                        },
+
+                        isValid() {
+                            return this.form.layanan && this.form.asal && this.form.tujuan && this.form.tanggal && this.form.asal !== this.form.tujuan;
+                        },
+
+                        init() {
+                            this.today = new Date().toISOString().split("T")[0];
+                        },
+
+                        kirimWA() {
+                            if (!this.isValid()) return;
+
+                            let pesan = `Halo Mega Nusa Trans 👋
+Saya ingin memesan:
+
+Layanan: ${this.form.layanan}
+Asal: ${this.form.asal}
+Tujuan: ${this.form.tujuan}
+Tanggal: ${this.form.tanggal}`;
+
+                            window.open(`https://wa.me/6281229485497?text=${encodeURIComponent(pesan)}`, "_blank");
+                        },
+                    };
+                }
+            </script>
+
+            <!-- CARA PEMESANAN -->
+            <section class="pt-24 pb-20 bg-gradient-to-b from-gray-200/75 to-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">Pesan Travel <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent animate-gradient-x">Tanpa Ribet</span></h2>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Hanya dalam beberapa langkah, perjalanan Anda siap kami atur dengan mudah dan cepat.</p>
+                    </div>
+
+                    <!-- STEPS -->
+                    <div class="relative grid md:grid-cols-4 gap-12">
+                        <!-- LINE CONNECTOR (DESKTOP, WAVY STRIP) -->
+                        <svg class="hidden md:block absolute top-6 left-0 w-full h-8 z-0" viewBox="0 0 100 8" preserveAspectRatio="none">
+                            <path d="M0 4 C20 0, 40 8, 60 4 S100 4, 100 4" stroke="#D1D5DB" stroke-width="2" fill="transparent" stroke-dasharray="3 3" class="animated-wave" />
+                        </svg>
+
+                        <style>
+                            .animated-wave {
+                                stroke-dasharray: 4 4;
+                                animation: waveMove 2s linear infinite;
+                            }
+
+                            @keyframes waveMove {
+                                0% {
+                                    stroke-dashoffset: 0;
+                                }
+                                100% {
+                                    stroke-dashoffset: 8;
+                                }
+                            }
+                        </style>
+
+                        <!-- STEP 1 -->
+                        <div class="relative text-center group cursor-pointer">
+                            <div class="relative z-10 w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-primary text-white text-2xl font-bold shadow-lg transition transform group-hover:scale-110">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <h3 class="mt-6 font-semibold text-lg group-hover:text-primary transition duration-300">Pilih Rute Anda</h3>
+                            <p class="text-gray-600 text-sm mt-2 leading-relaxed">Tentukan kota asal, tujuan, dan jadwal keberangkatan sesuai kebutuhan Anda.</p>
+                        </div>
+
+                        <!-- STEP 2 -->
+                        <div class="relative text-center group cursor-pointer">
+                            <div class="relative z-10 w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-primary text-white text-2xl font-bold shadow-lg transition transform group-hover:scale-110">
+                                <i data-lucide="message-square"></i>
+                            </div>
+                            <h3 class="mt-6 font-semibold text-lg group-hover:text-primary transition duration-300">Chat Admin</h3>
+                            <p class="text-gray-600 text-sm mt-2 leading-relaxed">Klik tombol WhatsApp dan hubungi admin kami untuk konfirmasi ketersediaan.</p>
+                        </div>
+
+                        <!-- STEP 3 -->
+                        <div class="relative text-center group cursor-pointer">
+                            <div class="relative z-10 w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-primary text-white text-2xl font-bold shadow-lg transition transform group-hover:scale-110">
+                                <i data-lucide="edit-3"></i>
+                            </div>
+                            <h3 class="mt-6 font-semibold text-lg group-hover:text-primary transition duration-300">Isi Data</h3>
+                            <p class="text-gray-600 text-sm mt-2 leading-relaxed">Lengkapi data penumpang atau pengiriman dengan cepat dan mudah.</p>
+                        </div>
+
+                        <!-- STEP 4 -->
+                        <div class="relative text-center group cursor-pointer">
+                            <div class="relative z-10 w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-primary text-white text-2xl font-bold shadow-lg transition transform group-hover:scale-110">
+                                <i data-lucide="check-circle"></i>
+                            </div>
+                            <h3 class="mt-6 font-semibold text-lg group-hover:text-primary transition duration-300">Konfirmasi & Berangkat</h3>
+                            <p class="text-gray-600 text-sm mt-2 leading-relaxed">Setelah data sesuai, lakukan konfirmasi dan Anda siap berangkat dengan nyaman.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KEUNGGULAN -->
+            <section class="py-20 bg-gradient-to-b from-white to-gray-200/75">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">Kenapa Memilih <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent animate-gradient-x">Mega Nusa Trans?</span></h2>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Kami berkomitmen memberikan pengalaman perjalanan terbaik dengan layanan profesional dan terpercaya.</p>
+                    </div>
+
+                    <!-- GRID -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                        <!-- ITEM 1 -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Door-to-Door Service</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Dijemput dan diantar langsung ke lokasi Anda tanpa perlu ke terminal.</p>
+                        </div>
+
+                        <!-- ITEM 2 -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="clock"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Tepat Waktu & Fleksibel</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Jadwal keberangkatan teratur dan bisa disesuaikan dengan kebutuhan Anda.</p>
+                        </div>
+
+                        <!-- ITEM 3 -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="car"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Armada Nyaman & Terawat</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Mobil selalu dalam kondisi prima, bersih, dan dilengkapi fasilitas kenyamanan.</p>
+                        </div>
+
+                        <!-- ITEM 4 -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="user-check"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Driver Profesional</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Sopir berpengalaman, ramah, dan menguasai rute perjalanan dengan baik.</p>
+                        </div>
+
+                        <!-- ITEM 5 -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="smartphone"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Booking Mudah</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Pesan hanya lewat WhatsApp, cepat, praktis, dan langsung dikonfirmasi.</p>
+                        </div>
+
+                        <!-- ITEM 6 -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="wallet"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Harga Terjangkau</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">Tarif bersaing dengan pelayanan maksimal tanpa biaya tersembunyi.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LAYANAN -->
+            <section class="py-20 bg-gradient-to-b from-gray-200/75 to-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">Layanan <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent animate-gradient-x">Mega Nusa Trans</span></h2>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Kami menyediakan berbagai layanan perjalanan dan pengiriman yang bisa disesuaikan dengan kebutuhan Anda.</p>
+                    </div>
+
+                    <!-- GRID -->
+                    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
+                        <!-- 1. TRAVEL -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer flex flex-col">
+                            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="bus" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Travel Door-to-Door</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Layanan antar jemput langsung dari lokasi Anda ke tujuan tanpa ribet.</p>
+                            <!-- BUTTON -->
+                            <a href="rute.html" class="mt-auto inline-flex items-center justify-center bg-transparent text-primary border border-primary/50 hover:text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-none hover:bg-gradient-to-r hover:from-primary hover:via-blue-600 hover:to-primary hover:shadow-xl transition-all duration-300 group">
+                                Lihat Rute
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-2"> </i>
+                            </a>
+                        </div>
+
+                        <!-- 2. CARTER -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer flex flex-col">
+                            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="car" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Carter Mobil + Sopir</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Sewa mobil fleksibel dengan driver profesional sesuai kebutuhan Anda.</p>
+                            <!-- BUTTON -->
+                            <a href="#" class="mt-auto inline-flex items-center justify-center bg-transparent text-primary border border-primary/50 hover:text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-none hover:bg-gradient-to-r hover:from-primary hover:via-blue-600 hover:to-primary hover:shadow-xl transition-all duration-300 group">
+                                Pilih Mobil
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-2"> </i>
+                            </a>
+                        </div>
+
+                        <!-- 3. PAKET -->
+                        <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-2xl transition duration-500 ease-in-out transform hover:-translate-y-2 group cursor-pointer flex flex-col">
+                            <!-- ICON -->
+                            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-primary/20 text-primary mb-4 group-hover:bg-primary group-hover:text-white transition duration-300">
+                                <i data-lucide="package" class="w-8 h-8"></i>
+                            </div>
+
+                            <!-- TITLE -->
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition duration-300">Kirim Paket</h3>
+
+                            <!-- DESCRIPTION -->
+                            <p class="text-gray-600 text-sm leading-relaxed mb-6">Kirim barang aman dan cepat ke berbagai kota tujuan.</p>
+
+                            <!-- BUTTON -->
+                            <a href="#" class="mt-auto inline-flex items-center justify-center bg-transparent text-primary border border-primary/50 hover:text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-none hover:bg-gradient-to-r hover:from-primary hover:via-blue-600 hover:to-primary hover:shadow-xl transition-all duration-300 group">
+                                Kirim Sekarang
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-2"> </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RUTE POPULER MODERN -->
+            <section class="py-20 bg-gradient-to-b from-white to-gray-200/75">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">
+                            Rute Favorit untuk
+                            <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent animate-gradient-x"> Perjalanan Anda </span>
+                        </h2>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Pilihan rute favorit pelanggan dengan jadwal rutin dan harga terjangkau.</p>
+                    </div>
+
+                    <!-- GRID -->
+                    <div
+                        x-data="{
+                cards: [
+                    {rute:'Solo – Jember', desc:'Perjalanan nyaman dari Solo ke Jember', harga:'Rp 300.000', rating:4},
+                    {rute:'Solo – Pasuruan', desc:'Perjalanan cepat & aman ke Pasuruan', harga:'Rp 300.000', rating:4},
+                    {rute:'Solo – Blitar', desc:'Solusi perjalanan praktis ke Blitar', harga:'Rp 250.000', rating:3}
+                ]
+            }"
+                        x-init="$nextTick(() => lucide.createIcons())"
+                        class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+                    >
+                        <!-- CARD -->
+                        <template x-for="card in cards" :key="card.rute">
+                            <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-2xl transition transform hover:-translate-y-2 flex flex-col group">
+                                <!-- HEADER CARD -->
+                                <div class="flex items-center mb-3">
+                                    <div class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-3 transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+                                        <i data-lucide="bus" class="w-5 h-5"></i>
+                                    </div>
+                                    <h3 class="font-semibold text-lg group-hover:text-primary transition">
+                                        <span x-text="card.rute"></span>
+                                    </h3>
+                                </div>
+
+                                <!-- DESC -->
+                                <p class="text-gray-600 text-sm mb-2 flex-1" x-text="card.desc"></p>
+
+                                <!-- RATING -->
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400 space-x-0.5">
+                                        <template x-for="i in 5" :key="i">
+                                            <i data-lucide="star" :class="i <= card.rating ? 'w-4 h-4 text-yellow-400' : 'w-4 h-4 text-gray-300'"> </i>
+                                        </template>
+                                    </div>
+                                    <span class="text-gray-500 text-sm ml-2" x-text="card.rating + '.0'"></span>
+                                </div>
+
+                                <!-- HARGA -->
+                                <span class="text-primary font-bold mb-4"> 💰 <span x-text="card.harga"></span> / seat </span>
+
+                                <!-- LINK -->
+                                <a href="#" class="text-primary font-semibold hover:underline text-sm mb-3"> Pilih Mobil → </a>
+
+                                <!-- BUTTONS -->
+                                <div class="flex gap-3 mt-auto">
+                                    <!-- DETAIL (abu clean, tidak ganggu CTA utama) -->
+                                    <a href="detail-rute.html" class="flex-1 text-center bg-gray-100 text-gray-700 px-3 py-2 rounded-xl hover:bg-gray-200 transition-all duration-300 font-semibold text-sm"> Lihat Detail </a>
+
+                                    <!-- PESAN -->
+                                    <a
+                                        href="#"
+                                        @click.prevent="
+                                    let pesan = `Halo Admin 👋
+Saya ingin pesan travel:
+
+📍 Rute: ${card.rute}
+💰 Harga: ${card.harga}
+
+Mohon info lebih lanjut ya 🙏`;
+                                    window.open(`https://wa.me/6285162930474?text=${encodeURIComponent(pesan)}`, '_blank')
+                                   "
+                                        class="flex-1 inline-flex items-center justify-center bg-transparent text-primary border border-primary/50 hover:text-white font-semibold text-sm px-3 py-2 rounded-xl hover:bg-gradient-to-r hover:from-primary hover:via-blue-600 hover:to-primary hover:shadow-xl transition-all duration-300 group/btn"
+                                    >
+                                        <span>Pesan</span>
+                                        <i data-lucide="arrow-right" class="w-4 h-4 ml-1 transition-transform duration-300 group-hover/btn:translate-x-2"> </i>
+                                    </a>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- MAIN CTA -->
+                    <div class="text-center mt-16">
+                        <a href="rute.html" class="inline-flex items-center justify-center border border-primary/50 text-white font-semibold text-sm px-6 py-3 rounded-lg bg-primary hover:bg-gradient-to-r hover:from-primary hover:via-blue-600 hover:to-primary hover:shadow-xl transition-all duration-500 group">
+                            Lihat Semua Rute
+
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-2"> </i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FIX LUICDE ICON -->
+            <script>
+                document.addEventListener("alpine:init", () => {
+                    Alpine.effect(() => {
+                        setTimeout(() => lucide.createIcons(), 0);
+                    });
+                });
+            </script>
+
+            <!-- TESTIMONI CAROUSEL -->
+            <section class="py-20 bg-gradient-to-b from-white to-gray-200/75">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">
+                            Apa Kata
+                            <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent animate-gradient-x"> Pelanggan Kami</span>
+                        </h2>
+                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Kepuasan pelanggan adalah prioritas kami. Berikut pengalaman mereka menggunakan layanan Mega Nusa Trans.</p>
+                    </div>
+
+                    <!-- SWIPER CONTAINER -->
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <!-- CARD TESTI 1 -->
+                            <div class="swiper-slide bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition flex flex-col">
+                                <img class="w-16 h-16 rounded-full mb-4" src="https://i.pravatar.cc/100?img=1" alt="Andi Pratama" />
+                                <div class="flex text-yellow-400 mb-3 space-x-0.5">
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                </div>
+                                <p class="text-gray-700 italic mb-4 flex-1">“Perjalanannya nyaman banget, dijemput langsung dari rumah. Driver ramah dan tepat waktu. Recommended!”</p>
+                                <h4 class="font-semibold text-gray-800">Andi Pratama</h4>
+                                <span class="text-sm text-gray-500">Solo</span>
+                            </div>
+
+                            <!-- CARD TESTI 2 -->
+                            <div class="swiper-slide bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition flex flex-col">
+                                <img class="w-16 h-16 rounded-full mb-4" src="https://i.pravatar.cc/100?img=2" alt="Siti Rahma" />
+                                <div class="flex text-yellow-400 mb-3 space-x-0.5">
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4"></i>
+                                    <i data-lucide="star" class="w-4 h-4"></i>
+                                </div>
+                                <p class="text-gray-700 italic mb-4 flex-1">“Booking gampang lewat WhatsApp, respon cepat. Nggak ribet sama sekali. Pasti pakai lagi!”</p>
+                                <h4 class="font-semibold text-gray-800">Siti Rahma</h4>
+                                <span class="text-sm text-gray-500">Malang</span>
+                            </div>
+
+                            <!-- CARD TESTI 3 -->
+                            <div class="swiper-slide bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition flex flex-col">
+                                <img class="w-16 h-16 rounded-full mb-4" src="https://i.pravatar.cc/100?img=3" alt="Budi Santoso" />
+                                <div class="flex text-yellow-400 mb-3 space-x-0.5">
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4"></i>
+                                </div>
+                                <p class="text-gray-700 italic mb-4 flex-1">“Mobil bersih, AC dingin, perjalanan jadi lebih nyaman. Harga juga masih terjangkau.”</p>
+                                <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                                <span class="text-sm text-gray-500">Kediri</span>
+                            </div>
+
+                            <!-- CARD TESTI 4 - DUMMY -->
+                            <div class="swiper-slide bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition flex flex-col">
+                                <img class="w-16 h-16 rounded-full mb-4" src="https://i.pravatar.cc/100?img=4" alt="Dewi Lestari" />
+                                <div class="flex text-yellow-400 mb-3 space-x-0.5">
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                </div>
+                                <p class="text-gray-700 italic mb-4 flex-1">“Sering kirim paket lewat sini, selalu aman dan sampai tepat waktu. Pelayanan mantap!”</p>
+                                <h4 class="font-semibold text-gray-800">Dewi Lestari</h4>
+                                <span class="text-sm text-gray-500">Surabaya</span>
+                            </div>
+
+                            <!-- CARD TESTI 5 - DUMMY -->
+                            <div class="swiper-slide bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition flex flex-col">
+                                <img class="w-16 h-16 rounded-full mb-4" src="https://i.pravatar.cc/100?img=5" alt="Rizky Ananda" />
+                                <div class="flex text-yellow-400 mb-3 space-x-0.5">
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
+                                    <i data-lucide="star" class="w-4 h-4"></i>
+                                    <i data-lucide="star" class="w-4 h-4"></i>
+                                </div>
+                                <p class="text-gray-700 italic mb-4 flex-1">“Travel terbaik yang pernah saya pakai. Door-to-door beneran memudahkan banget.”</p>
+                                <h4 class="font-semibold text-gray-800">Rizky Ananda</h4>
+                                <span class="text-sm text-gray-500">Jakarta</span>
+                            </div>
+                        </div>
+
+                        <!-- OPTIONAL SWIPER NAVIGATION -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination mt-4"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PASTIKAN INSTALL SWIPER.JS -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+            <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+            <script>
+                const swiper = new Swiper(".swiper-container", {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                    loop: true,
+                    freeMode: true, // ini biar bisa gerak smooth tanpa stop
+                    speed: 5000, // total durasi untuk 1 loop
+                    autoplay: {
+                        delay: 0, // tidak ada jeda
+                        disableOnInteraction: false,
+                    },
+                    freeModeMomentum: false, // biar gerak konstan tanpa "lambat" di akhir
+                    allowTouchMove: false, // optional, biar user tidak ganggu
+                    breakpoints: {
+                        640: { slidesPerView: 1 },
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                    },
+                });
+            </script>
+
+            <!-- CTA FINAL -->
+            <section class="py-20 bg-gradient-to-b from-gray-200/75 to-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="bg-gradient-to-br from-blue-500 via-primary to-primary text-white relative overflow-hidden rounded-2xl shadow-xl">
+                        <!-- DECOR -->
+                        <div class="absolute inset-0 opacity-20">
+                            <div class="w-full h-full bg-[radial-gradient(circle_at_center,white,transparent)]"></div>
+                        </div>
+
+                        <div class="relative max-w-4xl mx-auto px-6 py-16 text-center">
+                            <!-- HEADLINE -->
+                            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 relative inline-block">Siap Berangkat Tanpa Ribet?</h2>
+
+                            <!-- SUB -->
+                            <p p class="text-slate-100 text-base md:text-lg leading-relaxed mb-6">Pesan sekarang dan nikmati perjalanan yang aman, nyaman, dan tepat tujuan bersama Mega Nusa Trans.</p>
+
+                            <!-- BUTTON -->
+                            <a href="#" class="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                                <i class="bi bi-whatsapp text-xl"></i>
+                                Chat WhatsApp Sekarang
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="bg-primary text-gray-300 pt-16">
+            <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-10">
+                <!-- BRANDING -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-3">Mega Nusa Trans</h3>
+                    <p class="text-sm mb-2 text-gray-200">Banjarnegara – Surabaya</p>
+                    <p class="text-sm text-gray-300">Aman, Nyaman, Tepat Tujuan</p>
+                </div>
+
+                <!-- MENU -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Menu</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-secondary transition">Beranda</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Layanan</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Rute</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Testimoni</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Tentang</a></li>
+                    </ul>
+                </div>
+
+                <!-- KONTAK -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Kontak</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            📞
+                            <a href="#" class="hover:text-secondary transition"> WhatsApp: 08xxxxxxxxxx </a>
+                        </li>
+                        <li>📍 Lokasi: Banjarnegara</li>
+                        <li>⏰ Jam Operasional: 24 Jam</li>
+                    </ul>
+                </div>
+
+                <!-- DESKRIPSI -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Tentang Layanan</h4>
+                    <p class="text-sm text-gray-300 leading-relaxed">Layanan travel, carter mobil, dan pengiriman paket terpercaya dengan sistem door-to-door yang memudahkan perjalanan Anda.</p>
+                </div>
+            </div>
+
+            <!-- COPYRIGHT -->
+            <div class="mt-12 border-t border-white/20 py-6 text-center text-sm text-gray-300">
+                Mega Nusa Trans | Banjarnegara - Surabaya | Aman, Nyaman, Tepat Tujuan <br />
+                © Copyright 2024, Mega Nusa Trans
+            </div>
+        </footer>
+
+        <script>
+            lucide.createIcons();
+        </script>
+
+        <!-- FLOATING BUTTON -->
+        <button id="waButton" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl z-50 transition">
+            <i class="bi bi-whatsapp"></i>
+        </button>
+
+        <!-- CHAT POPUP -->
+        <div id="waPopup" class="fixed bottom-24 right-6 w-80 bg-white rounded-2xl shadow-2xl overflow-hidden hidden z-50">
+            <!-- HEADER -->
+            <div class="bg-green-500 text-white p-4 flex justify-between items-center">
+                <div>
+                    <h3 class="font-semibold">Admin</h3>
+                    <p class="text-xs opacity-80">Biasanya balas cepat</p>
+                </div>
+                <button id="closePopup" class="text-white text-xl">&times;</button>
+            </div>
+
+            <!-- CHAT BODY -->
+            <div class="p-4 space-y-3 bg-gray-50">
+                <div class="bg-white p-3 rounded-xl shadow text-sm">
+                    Halo 👋<br />
+                    Ada yang bisa kami bantu?
+                </div>
+
+                <!-- QUICK MESSAGE -->
+                <button class="quickMsg w-full text-left bg-white p-3 rounded-xl shadow text-sm hover:bg-gray-100">Saya ingin bertanya tentang layanan travel</button>
+
+                <button class="quickMsg w-full text-left bg-white p-3 rounded-xl shadow text-sm hover:bg-gray-100">Berapa harga travel dari Solo ke Surabaya?</button>
+            </div>
+
+            <!-- INPUT -->
+            <div class="p-3 border-t flex gap-2">
+                <input id="waInput" type="text" placeholder="Tulis pesan..." class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none" />
+
+                <button id="sendWa" class="bg-green-500 hover:bg-green-600 text-white px-4 rounded-lg">Kirim</button>
+            </div>
+        </div>
+
+        <!-- BOOTSTRAP ICON -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+
+        <script>
+            const waButton = document.getElementById("waButton");
+            const waPopup = document.getElementById("waPopup");
+            const closePopup = document.getElementById("closePopup");
+            const sendWa = document.getElementById("sendWa");
+            const waInput = document.getElementById("waInput");
+            const quickMsgs = document.querySelectorAll(".quickMsg");
+
+            const phone = "6285162930474";
+
+            // OPEN POPUP
+            waButton.onclick = () => {
+                waPopup.classList.toggle("hidden");
+            };
+
+            // CLOSE POPUP
+            closePopup.onclick = () => {
+                waPopup.classList.add("hidden");
+            };
+
+            // QUICK MESSAGE CLICK
+            quickMsgs.forEach((btn) => {
+                btn.onclick = () => {
+                    waInput.value = btn.innerText;
+                };
+            });
+
+            // SEND TO WHATSAPP
+            sendWa.onclick = () => {
+                let message = waInput.value.trim();
+
+                if (!message) {
+                    alert("Isi pesan dulu ya 😊");
+                    return;
+                }
+
+                let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+                window.open(url, "_blank");
+            };
+        </script>
+    </body>
+</html>

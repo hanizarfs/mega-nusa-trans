@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="id" x-data="{ open:false, scrolled:false }" x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 20 })">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Title -->
+        <title>Mega Nusa Travel - Home</title>
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Alpine JS -->
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+        <!-- Lucide Icons -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#0011FF",
+                            secondary: "#FEDE00",
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+
+    <body class="font-sans">
+        <!-- NAVBAR -->
+        <header :class="scrolled ? 'bg-white shadow-lg' : 'bg-transparent'" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+                <!-- LOGO -->
+                <div class="flex flex-col leading-tight">
+                    <span class="text-xl font-bold text-primary">Mega Nusa Travel</span>
+                    <span class="text-xs text-gray-500">Aman, Nyaman, Tepat Tujuan</span>
+                </div>
+
+                <!-- MENU DESKTOP -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-gray-700">
+                    <a href="#" class="hover:text-primary transition">Beranda</a>
+                    <a href="#" class="hover:text-primary transition">Layanan</a>
+                    <a href="#" class="hover:text-primary transition">Rute</a>
+                    <a href="#" class="hover:text-primary transition">Testimoni</a>
+                    <a href="#" class="hover:text-primary transition">Tentang</a>
+                </nav>
+
+                <!-- CTA BUTTON -->
+                <div class="hidden md:block">
+                    <a href="#" class="bg-secondary text-black font-semibold px-5 py-2 rounded-lg flex items-center gap-2 hover:scale-105 hover:shadow-lg transition"> 🚀 Pesan Sekarang </a>
+                </div>
+
+                <!-- HAMBURGER -->
+                <button @click="open = !open" class="md:hidden">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- MOBILE MENU -->
+            <div x-show="open" x-transition @click.away="open=false" class="md:hidden bg-white shadow-lg px-4 pb-4">
+                <nav class="flex flex-col gap-4 text-gray-700 font-medium">
+                    <a href="#" class="hover:text-primary">Beranda</a>
+                    <a href="#" class="hover:text-primary">Layanan</a>
+                    <a href="#" class="hover:text-primary">Rute</a>
+                    <a href="#" class="hover:text-primary">Testimoni</a>
+                    <a href="#" class="hover:text-primary">Tentang</a>
+
+                    <!-- CTA MOBILE -->
+                    <a href="#" class="mt-2 bg-secondary text-black font-semibold px-4 py-2 rounded-lg text-center hover:scale-105 transition"> 🚀 Pesan Sekarang </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- HERO SECTION -->
+            <section x-data="heroSlider()" x-init="start()" class="relative min-h-screen flex items-center justify-center overflow-hidden pb-40">
+                <!-- BACKGROUND -->
+                <template x-for="(slide, index) in slides" :key="index">
+                    <div class="absolute inset-0 transition-all duration-[2000ms] ease-in-out" :class="current === index ? 'opacity-100 scale-100' : 'opacity-0 scale-105'">
+                        <img :src="slide.image" class="w-full h-full object-cover" />
+                        <div class="absolute inset-0 bg-black/60"></div>
+                    </div>
+                </template>
+
+                <!-- HERO TEXT -->
+                <div class="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
+                    <div x-transition:enter="transition-all duration-1000" x-transition:enter-start="opacity-0 translate-y-5" x-transition:enter-end="opacity-100 translate-y-0" :key="current">
+                        <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4" x-text="slides[current].title"></h1>
+
+                        <h2 class="text-lg md:text-2xl font-semibold mb-4 opacity-90" x-text="slides[current].subtitle"></h2>
+
+                        <p class="text-gray-200">Layanan travel door-to-door, carter mobil, dan kirim paket dengan proses cepat dan mudah. Cukup isi form, klik WhatsApp, dan perjalanan Anda siap kami atur.</p>
+                    </div>
+                </div>
+
+                <!-- FORM (ABSOLUTE FIXED POSITION) -->
+                <div class="absolute bottom-[40px] left-1/2 transform -translate-x-1/2 w-full px-4 z-20">
+                    <div class="max-w-5xl mx-auto bg-white/95 backdrop-blur rounded-2xl shadow-2xl p-6">
+                        <div class="grid md:grid-cols-5 gap-4">
+                            <!-- Layanan -->
+                            <div>
+                                <label class="text-sm text-gray-600">Layanan</label>
+                                <select x-model="form.layanan" class="w-full mt-1 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary">
+                                    <option value="">Pilih</option>
+                                    <option>Travel</option>
+                                    <option>Carter</option>
+                                    <option>Paket</option>
+                                </select>
+                            </div>
+
+                            <!-- Asal -->
+                            <div>
+                                <label class="text-sm text-gray-600">Asal</label>
+                                <input type="text" x-model="form.asal" placeholder="Solo" class="w-full mt-1 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary" />
+                            </div>
+
+                            <!-- Tujuan -->
+                            <div>
+                                <label class="text-sm text-gray-600">Tujuan</label>
+                                <input type="text" x-model="form.tujuan" placeholder="Surabaya" class="w-full mt-1 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary" />
+                            </div>
+
+                            <!-- Tanggal -->
+                            <div>
+                                <label class="text-sm text-gray-600">Tanggal</label>
+                                <input type="date" x-model="form.tanggal" class="w-full mt-1 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary" />
+                            </div>
+
+                            <!-- BUTTON -->
+                            <div class="flex items-end">
+                                <button @click="kirimWA()" class="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:scale-105 hover:shadow-lg transition">💬 Pesan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KEUNGGULAN -->
+            <section class="pt-32 pb-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Kenapa Memilih <span class="text-primary">Mega Nusa Travel?</span></h2>
+                        <p class="text-gray-600">Kami berkomitmen memberikan pengalaman perjalanan terbaik dengan layanan profesional dan terpercaya.</p>
+                    </div>
+
+                    <!-- GRID -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- ITEM -->
+                        <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition group">
+                            <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition">Door-to-Door Service</h3>
+                            <p class="text-gray-600 text-sm">Dijemput dan diantar langsung ke lokasi Anda tanpa perlu ke terminal.</p>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition group">
+                            <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
+                                <i data-lucide="clock"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition">Tepat Waktu & Fleksibel</h3>
+                            <p class="text-gray-600 text-sm">Jadwal keberangkatan teratur dan bisa disesuaikan dengan kebutuhan Anda.</p>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition group">
+                            <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
+                                <i data-lucide="car"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition">Armada Nyaman & Terawat</h3>
+                            <p class="text-gray-600 text-sm">Mobil selalu dalam kondisi prima, bersih, dan dilengkapi fasilitas kenyamanan.</p>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition group">
+                            <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
+                                <i data-lucide="user-check"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition">Driver Profesional</h3>
+                            <p class="text-gray-600 text-sm">Sopir berpengalaman, ramah, dan menguasai rute perjalanan dengan baik.</p>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition group">
+                            <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
+                                <i data-lucide="smartphone"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition">Booking Mudah</h3>
+                            <p class="text-gray-600 text-sm">Pesan hanya lewat WhatsApp, cepat, praktis, dan langsung dikonfirmasi.</p>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition group">
+                            <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/10 text-primary mb-4">
+                                <i data-lucide="wallet"></i>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-2 group-hover:text-primary transition">Harga Terjangkau</h3>
+                            <p class="text-gray-600 text-sm">Tarif bersaing dengan pelayanan maksimal tanpa biaya tersembunyi.</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-12">
+                        <p class="text-lg font-semibold text-gray-800 mb-4">🚀 Siap perjalanan Anda hari ini?</p>
+                        <a href="#" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition"> Chat Admin Sekarang </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CARA PEMESANAN -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Cara Mudah Pesan Travel</h2>
+                        <p class="text-gray-600">Hanya dalam beberapa langkah, perjalanan Anda siap kami atur tanpa ribet.</p>
+                    </div>
+
+                    <!-- STEPS -->
+                    <div class="grid md:grid-cols-4 gap-8 relative">
+                        <!-- LINE CONNECTOR (DESKTOP) -->
+                        <div class="hidden md:block absolute top-10 left-0 w-full h-0.5 bg-gray-200"></div>
+
+                        <!-- STEP 1 -->
+                        <div class="relative text-center">
+                            <div class="relative z-10 w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-primary text-white text-xl font-bold shadow-lg">1</div>
+                            <h3 class="mt-6 font-semibold text-lg">📍 Pilih Rute Anda</h3>
+                            <p class="text-gray-600 text-sm mt-2">Tentukan kota asal, tujuan, dan jadwal keberangkatan sesuai kebutuhan Anda.</p>
+                        </div>
+
+                        <!-- STEP 2 -->
+                        <div class="relative text-center">
+                            <div class="relative z-10 w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-primary text-white text-xl font-bold shadow-lg">2</div>
+                            <h3 class="mt-6 font-semibold text-lg">💬 Chat Admin</h3>
+                            <p class="text-gray-600 text-sm mt-2">Klik tombol WhatsApp dan hubungi admin kami untuk konfirmasi ketersediaan.</p>
+                        </div>
+
+                        <!-- STEP 3 -->
+                        <div class="relative text-center">
+                            <div class="relative z-10 w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-primary text-white text-xl font-bold shadow-lg">3</div>
+                            <h3 class="mt-6 font-semibold text-lg">📝 Isi Data</h3>
+                            <p class="text-gray-600 text-sm mt-2">Lengkapi data penumpang atau pengiriman dengan cepat dan mudah.</p>
+                        </div>
+
+                        <!-- STEP 4 -->
+                        <div class="relative text-center">
+                            <div class="relative z-10 w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-primary text-white text-xl font-bold shadow-lg">4</div>
+                            <h3 class="mt-6 font-semibold text-lg">✅ Konfirmasi & Berangkat</h3>
+                            <p class="text-gray-600 text-sm mt-2">Setelah data sesuai, lakukan konfirmasi dan Anda siap berangkat dengan nyaman.</p>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="text-center mt-16">
+                        <a href="#" class="inline-block bg-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition"> 🚀 Mulai Pesan Sekarang </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LAYANAN -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Layanan <span class="text-primary">Mega Nusa Travel</span></h2>
+                        <p class="text-gray-600">Kami menyediakan berbagai layanan perjalanan dan pengiriman yang bisa disesuaikan dengan kebutuhan Anda.</p>
+                    </div>
+
+                    <!-- GRID -->
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- 1. TRAVEL -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition group flex flex-col">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-primary/10 text-primary mb-4">
+                                <i data-lucide="bus"></i>
+                            </div>
+
+                            <h3 class="text-xl font-semibold mb-2 group-hover:text-primary transition">🚐 Travel Door-to-Door</h3>
+
+                            <p class="text-gray-600 text-sm mb-4">Layanan antar jemput langsung dari lokasi Anda ke tujuan tanpa perlu ke terminal.</p>
+
+                            <div class="text-sm text-gray-600 space-y-1 mb-4">
+                                <p><strong>Rute utama:</strong> Solo, Surabaya, Bali, Jakarta</p>
+                                <p><strong>Armada:</strong></p>
+                                <ul class="list-disc list-inside">
+                                    <li>Mobil kecil (dalam kota)</li>
+                                    <li>Elf / Hiace (antar kota)</li>
+                                    <li>Bus Pariwisata (rombongan)</li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-auto">
+                                <a href="#" class="inline-block text-primary font-semibold hover:underline"> Lihat Rute → </a>
+                            </div>
+                        </div>
+
+                        <!-- 2. CARTER -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition group flex flex-col">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-primary/10 text-primary mb-4">
+                                <i data-lucide="car"></i>
+                            </div>
+
+                            <h3 class="text-xl font-semibold mb-2 group-hover:text-primary transition">🚗 Carter Mobil + Sopir</h3>
+
+                            <p class="text-gray-600 text-sm mb-4">Solusi perjalanan fleksibel dengan mobil pilihan dan driver profesional.</p>
+
+                            <div class="text-sm text-gray-600 space-y-1 mb-4">
+                                <p><strong>Pilihan mobil:</strong></p>
+                                <ul class="list-disc list-inside">
+                                    <li>Avanza FWD</li>
+                                    <li>Sigra</li>
+                                    <li>Innova Reborn</li>
+                                    <li>Mobilio</li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-auto">
+                                <a href="#" class="inline-block text-primary font-semibold hover:underline"> Pilih Mobil → </a>
+                            </div>
+                        </div>
+
+                        <!-- 3. PAKET -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition group flex flex-col">
+                            <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-primary/10 text-primary mb-4">
+                                <i data-lucide="package"></i>
+                            </div>
+
+                            <h3 class="text-xl font-semibold mb-2 group-hover:text-primary transition">📦 Kirim Paket</h3>
+
+                            <p class="text-gray-600 text-sm mb-4">Kirim barang dengan aman dan cepat ke berbagai kota tujuan.</p>
+
+                            <div class="text-sm text-gray-600 space-y-1 mb-4">
+                                <p><strong>Jenis paket:</strong></p>
+                                <ul class="list-disc list-inside">
+                                    <li>Kendaraan</li>
+                                    <li>Hewan</li>
+                                    <li>Makanan</li>
+                                    <li>Furniture</li>
+                                    <li>Kebutuhan industri</li>
+                                </ul>
+
+                                <p class="mt-2"><strong>Armada:</strong> APV, Gran Max</p>
+                            </div>
+
+                            <div class="mt-auto">
+                                <a href="#" class="inline-block text-primary font-semibold hover:underline"> Kirim Sekarang → </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MICROCOPY -->
+                    <div class="text-center mt-16">
+                        <p class="text-gray-600 mb-4">Tidak yakin pilih layanan? Chat admin kami, kami siap membantu Anda.</p>
+                        <a href="#" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition"> 💬 Chat Admin </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RUTE POPULER -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Rute Populer</h2>
+                        <p class="text-gray-600">Pilihan rute favorit pelanggan dengan jadwal rutin dan harga terjangkau.</p>
+                    </div>
+
+                    <!-- GRID -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- CARD -->
+                        <div class="bg-gray-50 rounded-xl p-5 hover:shadow-lg transition group">
+                            <h3 class="font-semibold text-lg mb-1 group-hover:text-primary transition">🚐 Travel Solo – Jember</h3>
+                            <p class="text-gray-600 text-sm mb-3">Perjalanan nyaman dari Solo ke Jember</p>
+                            <p class="text-primary font-bold mb-4">💰 Rp 300.000 / seat</p>
+
+                            <div class="flex justify-between items-center text-sm">
+                                <a href="#" class="text-gray-600 hover:text-primary transition"> Lihat Detail </a>
+                                <a href="#" class="bg-primary text-white px-3 py-1 rounded-lg hover:scale-105 transition"> 💬 Pesan </a>
+                            </div>
+                        </div>
+
+                        <!-- CARD -->
+                        <div class="bg-gray-50 rounded-xl p-5 hover:shadow-lg transition group">
+                            <h3 class="font-semibold text-lg mb-1 group-hover:text-primary transition">🚐 Travel Solo – Pasuruan</h3>
+                            <p class="text-gray-600 text-sm mb-3">Perjalanan cepat & aman ke Pasuruan</p>
+                            <p class="text-primary font-bold mb-4">💰 Rp 300.000 / seat</p>
+
+                            <div class="flex justify-between items-center text-sm">
+                                <a href="#" class="text-gray-600 hover:text-primary transition"> Lihat Detail </a>
+                                <a href="#" class="bg-primary text-white px-3 py-1 rounded-lg hover:scale-105 transition"> 💬 Pesan </a>
+                            </div>
+                        </div>
+
+                        <!-- CARD -->
+                        <div class="bg-gray-50 rounded-xl p-5 hover:shadow-lg transition group">
+                            <h3 class="font-semibold text-lg mb-1 group-hover:text-primary transition">🚐 Travel Solo – Blitar</h3>
+                            <p class="text-gray-600 text-sm mb-3">Solusi perjalanan praktis ke Blitar</p>
+                            <p class="text-primary font-bold mb-4">💰 Rp 250.000 / seat</p>
+
+                            <div class="flex justify-between items-center text-sm">
+                                <a href="#" class="text-gray-600 hover:text-primary transition"> Lihat Detail </a>
+                                <a href="#" class="bg-primary text-white px-3 py-1 rounded-lg hover:scale-105 transition"> 💬 Pesan </a>
+                            </div>
+                        </div>
+
+                        <!-- CARD -->
+                        <div class="bg-gray-50 rounded-xl p-5 hover:shadow-lg transition group">
+                            <h3 class="font-semibold text-lg mb-1 group-hover:text-primary transition">🚐 Travel Solo – Malang</h3>
+                            <p class="text-gray-600 text-sm mb-3">Nikmati perjalanan nyaman menuju Malang</p>
+                            <p class="text-primary font-bold mb-4">💰 Rp 250.000 / seat</p>
+
+                            <div class="flex justify-between items-center text-sm">
+                                <a href="#" class="text-gray-600 hover:text-primary transition"> Lihat Detail </a>
+                                <a href="#" class="bg-primary text-white px-3 py-1 rounded-lg hover:scale-105 transition"> 💬 Pesan </a>
+                            </div>
+                        </div>
+
+                        <!-- CARD -->
+                        <div class="bg-gray-50 rounded-xl p-5 hover:shadow-lg transition group">
+                            <h3 class="font-semibold text-lg mb-1 group-hover:text-primary transition">🚐 Travel Solo – Kediri</h3>
+                            <p class="text-gray-600 text-sm mb-3">Antar kota dengan layanan door-to-door</p>
+                            <p class="text-primary font-bold mb-4">💰 Rp 250.000 / seat</p>
+
+                            <div class="flex justify-between items-center text-sm">
+                                <a href="#" class="text-gray-600 hover:text-primary transition"> Lihat Detail </a>
+                                <a href="#" class="bg-primary text-white px-3 py-1 rounded-lg hover:scale-105 transition"> 💬 Pesan </a>
+                            </div>
+                        </div>
+
+                        <!-- CARD -->
+                        <div class="bg-gray-50 rounded-xl p-5 hover:shadow-lg transition group">
+                            <h3 class="font-semibold text-lg mb-1 group-hover:text-primary transition">🚐 Travel Solo – Lamongan</h3>
+                            <p class="text-gray-600 text-sm mb-3">Perjalanan aman dan tepat waktu</p>
+                            <p class="text-primary font-bold mb-4">💰 Rp 300.000 / seat</p>
+
+                            <div class="flex justify-between items-center text-sm">
+                                <a href="#" class="text-gray-600 hover:text-primary transition"> Lihat Detail </a>
+                                <a href="#" class="bg-primary text-white px-3 py-1 rounded-lg hover:scale-105 transition"> 💬 Pesan </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MAIN CTA -->
+                    <div class="text-center mt-16">
+                        <a href="#" class="inline-block bg-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 hover:shadow-xl transition"> Lihat Semua Rute </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TENTANG KAMI -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <!-- TEXT -->
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Tentang <span class="text-primary">Mega Nusa Travel</span></h2>
+
+                            <p class="text-gray-600 leading-relaxed mb-6"><strong>Mega Nusa Travel (BMTRANSINDO)</strong> hadir sebagai solusi perjalanan antar kota yang aman, nyaman, dan tepat tujuan. Dengan sistem pemesanan yang mudah serta jadwal yang fleksibel, kami membantu Anda bepergian tanpa ribet — cukup pilih rute, pesan, dan berangkat.</p>
+
+                            <!-- CTA -->
+                            <a href="#" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:scale-105 hover:shadow-lg transition"> Lihat Layanan </a>
+                        </div>
+
+                        <!-- HIGHLIGHT -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                <i data-lucide="map-pin" class="text-primary"></i>
+                                <span class="text-sm text-gray-700">Door-to-door tanpa repot</span>
+                            </div>
+
+                            <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                <i data-lucide="clock" class="text-primary"></i>
+                                <span class="text-sm text-gray-700">Jadwal fleksibel & tepat waktu</span>
+                            </div>
+
+                            <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                <i data-lucide="car" class="text-primary"></i>
+                                <span class="text-sm text-gray-700">Armada terawat & nyaman</span>
+                            </div>
+
+                            <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                <i data-lucide="user-check" class="text-primary"></i>
+                                <span class="text-sm text-gray-700">Driver profesional</span>
+                            </div>
+
+                            <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                <i data-lucide="smartphone" class="text-primary"></i>
+                                <span class="text-sm text-gray-700">Booking mudah via WhatsApp</span>
+                            </div>
+
+                            <div class="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm">
+                                <i data-lucide="wallet" class="text-primary"></i>
+                                <span class="text-sm text-gray-700">Harga transparan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TESTIMONI -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <!-- HEADER -->
+                    <div class="text-center max-w-2xl mx-auto mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Apa Kata Pelanggan Kami?</h2>
+                        <p class="text-gray-600">Kepuasan pelanggan adalah prioritas kami. Berikut pengalaman mereka menggunakan layanan Mega Nusa Travel.</p>
+                    </div>
+
+                    <!-- GRID -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- TESTI 1 -->
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-lg transition">
+                            <img class="w-10 h-10 rounded-full" />
+                            <div class="text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
+                            <p class="text-gray-700 italic mb-4">“Perjalanannya nyaman banget, dijemput langsung dari rumah. Driver ramah dan tepat waktu. Recommended!”</p>
+                            <h4 class="font-semibold text-gray-800">Andi Pratama</h4>
+                            <span class="text-sm text-gray-500">Solo</span>
+                        </div>
+
+                        <!-- TESTI 2 -->
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-lg transition">
+                            <img class="w-10 h-10 rounded-full" />
+                            <div class="text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
+                            <p class="text-gray-700 italic mb-4">“Booking gampang lewat WhatsApp, respon cepat. Nggak ribet sama sekali. Pasti pakai lagi!”</p>
+                            <h4 class="font-semibold text-gray-800">Siti Rahma</h4>
+                            <span class="text-sm text-gray-500">Malang</span>
+                        </div>
+
+                        <!-- TESTI 3 -->
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-lg transition">
+                            <img class="w-10 h-10 rounded-full" />
+                            <div class="text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
+                            <p class="text-gray-700 italic mb-4">“Mobil bersih, AC dingin, perjalanan jadi lebih nyaman. Harga juga masih terjangkau.”</p>
+                            <h4 class="font-semibold text-gray-800">Budi Santoso</h4>
+                            <span class="text-sm text-gray-500">Kediri</span>
+                        </div>
+
+                        <!-- TESTI 4 -->
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-lg transition">
+                            <img class="w-10 h-10 rounded-full" />
+                            <div class="text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
+                            <p class="text-gray-700 italic mb-4">“Sering kirim paket lewat sini, selalu aman dan sampai tepat waktu. Pelayanan mantap!”</p>
+                            <h4 class="font-semibold text-gray-800">Dewi Lestari</h4>
+                            <span class="text-sm text-gray-500">Surabaya</span>
+                        </div>
+
+                        <!-- TESTI 5 -->
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-lg transition">
+                            <img class="w-10 h-10 rounded-full" />
+                            <div class="text-yellow-400 mb-3">⭐⭐⭐⭐⭐</div>
+                            <p class="text-gray-700 italic mb-4">“Travel terbaik yang pernah saya pakai. Door-to-door beneran memudahkan banget.”</p>
+                            <h4 class="font-semibold text-gray-800">Rizky Ananda</h4>
+                            <span class="text-sm text-gray-500">Jakarta</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- CTA FINAL -->
+        <!-- CTA FINAL -->
+        <section class="py-24 bg-gradient-to-br from-primary to-blue-700 text-white relative overflow-hidden">
+            <!-- DECOR -->
+            <div class="absolute inset-0 opacity-20">
+                <div class="w-full h-full bg-[radial-gradient(circle_at_center,white,transparent)]"></div>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto px-6 text-center">
+                <!-- HEADLINE -->
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">Siap Berangkat Tanpa Ribet?</h2>
+
+                <!-- SUB -->
+                <p class="text-lg md:text-xl text-white/90 mb-10">Pesan sekarang dan nikmati perjalanan yang aman, nyaman, dan tepat tujuan bersama Mega Nusa Travel.</p>
+
+                <!-- BUTTON -->
+                <a href="#" class="inline-flex items-center gap-3 bg-secondary text-black font-semibold px-8 py-4 rounded-xl text-lg shadow-xl hover:scale-105 hover:shadow-2xl transition"> 💬 Chat WhatsApp Sekarang </a>
+
+                <!-- MICROCOPY -->
+                <p class="mt-6 text-sm text-white/80">Admin kami siap melayani Anda dengan cepat setiap hari.</p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <!-- FOOTER -->
+        <footer class="bg-primary text-gray-300 pt-16">
+            <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-10">
+                <!-- BRANDING -->
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-3">Mega Nusa Trans</h3>
+                    <p class="text-sm mb-2 text-gray-200">Banjarnegara – Surabaya</p>
+                    <p class="text-sm text-gray-300">Aman, Nyaman, Tepat Tujuan</p>
+                </div>
+
+                <!-- MENU -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Menu</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-secondary transition">Beranda</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Layanan</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Rute</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Testimoni</a></li>
+                        <li><a href="#" class="hover:text-secondary transition">Tentang</a></li>
+                    </ul>
+                </div>
+
+                <!-- KONTAK -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Kontak</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            📞
+                            <a href="#" class="hover:text-secondary transition"> WhatsApp: 08xxxxxxxxxx </a>
+                        </li>
+                        <li>📍 Lokasi: Banjarnegara</li>
+                        <li>⏰ Jam Operasional: 24 Jam</li>
+                    </ul>
+                </div>
+
+                <!-- DESKRIPSI -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Tentang Layanan</h4>
+                    <p class="text-sm text-gray-300 leading-relaxed">Layanan travel, carter mobil, dan pengiriman paket terpercaya dengan sistem door-to-door yang memudahkan perjalanan Anda.</p>
+                </div>
+            </div>
+
+            <!-- COPYRIGHT -->
+            <div class="mt-12 border-t border-white/20 py-6 text-center text-sm text-gray-300">
+                Mega Nusa Trans | Banjarnegara - Surabaya | Aman, Nyaman, Tepat Tujuan <br />
+                © Copyright 2024, Mega Nusa Trans
+            </div>
+        </footer>
+
+        <script>
+            lucide.createIcons();
+        </script>
+
+        <script>
+            function heroSlider() {
+                return {
+                    current: 0,
+                    slides: [
+                        {
+                            image: "https://digital-bucket-v3.prod.bfi.co.id/assets/Blog/Blog%20New/Inspiratif%21%20Begini%20Cara%20Memulai%20Usaha%20Travel%20Mobil%20Keuntungan%20Berlipat/Usaha%20Travel%20Mobil.jpg",
+                            title: "Travel Antar Kota Tanpa Ribet",
+                            subtitle: "Aman, Nyaman, Tepat Tujuan",
+                        },
+                        {
+                            image: "https://www.olx.co.id/news/wp-content/uploads/2024/03/mobil-elf-1-696x464.webp",
+                            title: "Perjalanan Jauh Jadi Lebih Tenang",
+                            subtitle: "Bersama Mega Nusa Travel",
+                        },
+                        {
+                            image: "https://www.elefantastic.in/car_images/urbania.jpg",
+                            title: "Butuh Travel Hari Ini?",
+                            subtitle: "Kami Siap Antar Sampai Tujuan!",
+                        },
+                    ],
+
+                    form: {
+                        layanan: "",
+                        asal: "",
+                        tujuan: "",
+                        tanggal: "",
+                    },
+
+                    start() {
+                        setInterval(() => {
+                            this.current = (this.current + 1) % this.slides.length;
+                        }, 5000);
+                    },
+
+                    kirimWA() {
+                        let pesan = `Halo Mega Nusa Travel 👋
+    Saya ingin memesan layanan:
+    
+    🚗 Layanan: ${this.form.layanan}
+    📍 Asal: ${this.form.asal}
+    📍 Tujuan: ${this.form.tujuan}
+    📅 Tanggal: ${this.form.tanggal}
+    
+    Mohon info lebih lanjut ya 🙏`;
+
+                        let nomor = "628xxxxxxxxxx";
+                        let url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+
+                        window.open(url, "_blank");
+                    },
+                };
+            }
+        </script>
+    </body>
+</html>
