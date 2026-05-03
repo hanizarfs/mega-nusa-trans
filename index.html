@@ -732,25 +732,26 @@ Mohon info lebih lanjut ya 🙏`;
             </script>
 
             <!-- ARMADA -->
-            <section class="py-20 bg-white">
+            <section class="py-16 md:py-20 bg-white overflow-hidden">
                 <div class="max-w-7xl mx-auto px-4">
                     <!-- HEADING -->
-                    <div class="text-center mb-12">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-3">Pilih <span class="text-primary">Armada Terbaik</span></h2>
-                        <p class="text-gray-500 max-w-xl mx-auto">Berbagai pilihan kendaraan sesuai kebutuhan perjalanan Anda</p>
+                    <div class="text-center mb-10 md:mb-12">
+                        <h2 class="text-2xl md:text-4xl font-bold mb-3">Pilih <span class="text-primary">Armada Terbaik</span></h2>
+                        <p class="text-gray-500 text-sm md:text-base max-w-xl mx-auto">Berbagai pilihan kendaraan sesuai kebutuhan perjalanan Anda</p>
                     </div>
 
                     <!-- SWIPER -->
                     <div class="swiper mobilSwiper">
                         <div class="swiper-wrapper">
                             <!-- ITEM -->
-                            <!-- NOTE: style sudah dibuat clean tanpa shadow -->
+                            <template id="mobil-template"></template>
 
+                            <!-- LIST MOBIL -->
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/2.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/2.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Suzuki APV</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Suzuki APV</h3>
                                         <p class="text-xs text-gray-500">6-7 Penumpang</p>
                                     </div>
                                 </div>
@@ -758,9 +759,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/3.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/3.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Toyota Avanza</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Toyota Avanza</h3>
                                         <p class="text-xs text-gray-500">6 Penumpang</p>
                                     </div>
                                 </div>
@@ -768,9 +769,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/4.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/4.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Daihatsu Sigra</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Daihatsu Sigra</h3>
                                         <p class="text-xs text-gray-500">5-6 Penumpang</p>
                                     </div>
                                 </div>
@@ -778,9 +779,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/5.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/5.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Honda Mobilio</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Honda Mobilio</h3>
                                         <p class="text-xs text-gray-500">6-7 Penumpang</p>
                                     </div>
                                 </div>
@@ -788,9 +789,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/6.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/6.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Toyota Innova</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Toyota Innova</h3>
                                         <p class="text-xs text-gray-500">7 Penumpang</p>
                                     </div>
                                 </div>
@@ -798,9 +799,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/7.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/7.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Toyota Hiace</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Toyota Hiace</h3>
                                         <p class="text-xs text-gray-500">12-15 Penumpang</p>
                                     </div>
                                 </div>
@@ -808,9 +809,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/8.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/8.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Gran Max</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Gran Max</h3>
                                         <p class="text-xs text-gray-500">10-12 Penumpang</p>
                                     </div>
                                 </div>
@@ -818,9 +819,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/9.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/9.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Isuzu Elf</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Isuzu Elf</h3>
                                         <p class="text-xs text-gray-500">15-19 Penumpang</p>
                                     </div>
                                 </div>
@@ -828,9 +829,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/10.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/10.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Minibus Isuzu</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Minibus Isuzu</h3>
                                         <p class="text-xs text-gray-500">15 Penumpang</p>
                                     </div>
                                 </div>
@@ -838,9 +839,9 @@ Mohon info lebih lanjut ya 🙏`;
 
                             <div class="swiper-slide">
                                 <div class="rounded-2xl overflow-hidden group">
-                                    <img src="assets/mobil/11.png" class="w-full h-40 object-cover group-hover:scale-105 transition duration-500" />
+                                    <img src="assets/mobil/11.png" class="w-full h-52 object-cover transition duration-500 group-hover:scale-105" />
                                     <div class="pt-3 text-center">
-                                        <h3 class="font-semibold text-sm">Bus Pariwisata</h3>
+                                        <h3 class="font-semibold text-sm md:text-base">Bus Pariwisata</h3>
                                         <p class="text-xs text-gray-500">30-50 Penumpang</p>
                                     </div>
                                 </div>
@@ -854,52 +855,57 @@ Mohon info lebih lanjut ya 🙏`;
             <script>
                 const swiperMobil = new Swiper(".mobilSwiper", {
                     loop: true,
-                    speed: 800,
+                    speed: 900,
 
                     autoplay: {
-                        delay: 2000,
+                        delay: 2200,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: false,
                     },
 
-                    slidesPerView: 2, // ✅ MOBILE LANGSUNG 2
-                    spaceBetween: 12,
+                    slidesPerView: 1, // ✅ MOBILE FIX (1 saja)
+                    spaceBetween: 14,
 
                     breakpoints: {
-                        640: { slidesPerView: 3 },
-                        1024: { slidesPerView: 4 },
+                        640: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                        1280: { slidesPerView: 4 },
                     },
                 });
             </script>
 
             <!-- TESTIMONI CAROUSEL -->
-            <section class="py-20 bg-gray-200/75">
+            <!-- TESTIMONI -->
+            <section class="py-16 md:py-20 bg-gray-200/75 overflow-hidden">
                 <div class="max-w-7xl mx-auto px-4">
                     <!-- HEADER -->
-                    <div class="text-center mx-auto mb-16">
-                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 relative inline-block">
+                    <div class="text-center mx-auto mb-10 md:mb-14">
+                        <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-3">
                             Apa Kata
-                            <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent animate-gradient-x"> Pelanggan Kami</span>
+                            <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent animate-gradient-x"> Pelanggan Kami </span>
                         </h2>
-                        <p class="text-gray-600 text-base md:text-lg leading-relaxed">Kepuasan pelanggan adalah prioritas kami. Berikut pengalaman mereka menggunakan layanan Mega Nusa Trans.</p>
+                        <p class="text-gray-600 text-sm md:text-base max-w-xl mx-auto">Kepuasan pelanggan adalah prioritas kami.</p>
                     </div>
 
-                    <!-- SWIPER CONTAINER -->
-                    <div class="swiper-container">
+                    <!-- SWIPER -->
+                    <div class="swiper testiSwiper">
                         <div class="swiper-wrapper">
-                            <!-- CARD TESTI 1 -->
-                            <div class="swiper-slide bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition flex flex-col">
-                                <img class="w-16 h-16 rounded-full mb-4" src="https://i.pravatar.cc/100?img=1" alt="Andi Pratama" />
-                                <div class="flex text-yellow-400 mb-3 space-x-0.5">
+                            <!-- CARD -->
+                            <div class="swiper-slide bg-white p-5 md:p-6 rounded-2xl flex flex-col">
+                                <img class="w-14 h-14 md:w-16 md:h-16 rounded-full mb-4" src="https://i.pravatar.cc/100?img=1" />
+
+                                <div class="flex text-yellow-400 mb-3">
                                     <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
                                     <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
                                     <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
                                     <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
                                     <i data-lucide="star" class="w-4 h-4 fill-yellow-500"></i>
                                 </div>
-                                <p class="text-gray-700 italic mb-4 flex-1">“Perjalanannya nyaman banget, dijemput langsung dari rumah. Driver ramah dan tepat waktu. Recommended!”</p>
-                                <h4 class="font-semibold text-gray-800">Andi Pratama</h4>
-                                <span class="text-sm text-gray-500">Solo</span>
+
+                                <p class="text-gray-700 italic text-sm md:text-base mb-4 flex-1">“Perjalanannya nyaman banget, dijemput langsung dari rumah.”</p>
+
+                                <h4 class="font-semibold text-gray-800 text-sm md:text-base">Andi Pratama</h4>
+                                <span class="text-xs text-gray-500">Solo</span>
                             </div>
 
                             <!-- CARD TESTI 2 -->
@@ -971,25 +977,22 @@ Mohon info lebih lanjut ya 🙏`;
                 </div>
             </section>
 
-            <!-- PASTIKAN INSTALL SWIPER.JS -->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
-            <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
             <script>
-                const swiper = new Swiper(".swiper-container", {
-                    slidesPerView: 3,
-                    spaceBetween: 24,
+                const testiSwiper = new Swiper(".testiSwiper", {
                     loop: true,
-                    freeMode: true, // ini biar bisa gerak smooth tanpa stop
-                    speed: 5000, // total durasi untuk 1 loop
+                    speed: 900,
+
                     autoplay: {
-                        delay: 0, // tidak ada jeda
+                        delay: 2500,
                         disableOnInteraction: false,
+                        pauseOnMouseEnter: false,
                     },
-                    freeModeMomentum: false, // biar gerak konstan tanpa "lambat" di akhir
-                    allowTouchMove: false, // optional, biar user tidak ganggu
+
+                    slidesPerView: 1, // ✅ MOBILE
+                    spaceBetween: 14,
+
                     breakpoints: {
-                        640: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
+                        640: { slidesPerView: 2 },
                         1024: { slidesPerView: 3 },
                     },
                 });
