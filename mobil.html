@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Pilih Mobil - Mega Nusa Trans</title>
+
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+        <!-- Tailwind -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Lucide -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <!-- Swiper -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#0011FF",
+                            secondary: "#FFEB00",
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+
+    <body class="bg-gray-50">
+        <!-- HEADER -->
+        <header class="bg-primary text-white py-6 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold">Pilih Mobil Anda</h1>
+            <p class="text-white/80 text-sm mt-2">Armada terbaik untuk perjalanan nyaman</p>
+        </header>
+
+        <!-- CAROUSEL -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="swiper mobilSwiper">
+                    <div class="swiper-wrapper">
+                        <!-- CARD 1 -->
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition overflow-hidden group">
+                                <img src="https://source.unsplash.com/600x400/?toyota,avanza" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500" />
+
+                                <div class="p-5">
+                                    <h3 class="font-bold text-lg mb-1">Toyota Avanza</h3>
+                                    <p class="text-sm text-gray-500 mb-3">Kapasitas 6 Penumpang</p>
+
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="text-primary font-bold">Rp 350.000</span>
+                                        <span class="text-xs text-gray-400">/ hari</span>
+                                    </div>
+
+                                    <button onclick="pesan('Toyota Avanza')" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-700 transition">Pilih Mobil</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CARD 2 -->
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition overflow-hidden group">
+                                <img src="https://source.unsplash.com/600x400/?toyota,innova" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500" />
+
+                                <div class="p-5">
+                                    <h3 class="font-bold text-lg mb-1">Toyota Innova</h3>
+                                    <p class="text-sm text-gray-500 mb-3">Kapasitas 7 Penumpang</p>
+
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="text-primary font-bold">Rp 500.000</span>
+                                        <span class="text-xs text-gray-400">/ hari</span>
+                                    </div>
+
+                                    <button onclick="pesan('Toyota Innova')" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-700 transition">Pilih Mobil</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CARD 3 -->
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition overflow-hidden group">
+                                <img src="https://source.unsplash.com/600x400/?toyota,hiace" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500" />
+
+                                <div class="p-5">
+                                    <h3 class="font-bold text-lg mb-1">Toyota Hiace</h3>
+                                    <p class="text-sm text-gray-500 mb-3">Kapasitas 12-15 Penumpang</p>
+
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="text-primary font-bold">Rp 1.200.000</span>
+                                        <span class="text-xs text-gray-400">/ hari</span>
+                                    </div>
+
+                                    <button onclick="pesan('Toyota Hiace')" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-700 transition">Pilih Mobil</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CARD 4 -->
+                        <div class="swiper-slide">
+                            <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition overflow-hidden group">
+                                <img src="https://source.unsplash.com/600x400/?mitsubishi,xpander" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500" />
+
+                                <div class="p-5">
+                                    <h3 class="font-bold text-lg mb-1">Mitsubishi Xpander</h3>
+                                    <p class="text-sm text-gray-500 mb-3">Kapasitas 6-7 Penumpang</p>
+
+                                    <div class="flex items-center justify-between mb-4">
+                                        <span class="text-primary font-bold">Rp 450.000</span>
+                                        <span class="text-xs text-gray-400">/ hari</span>
+                                    </div>
+
+                                    <button onclick="pesan('Mitsubishi Xpander')" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-700 transition">Pilih Mobil</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCRIPT -->
+        <script>
+            const swiper = new Swiper(".mobilSwiper", {
+                slidesPerView: 3,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                breakpoints: {
+                    0: { slidesPerView: 1 },
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                },
+            });
+
+            function pesan(mobil) {
+                let text = `Halo Admin 👋
+Saya ingin menyewa mobil:
+
+🚗 Mobil: ${mobil}
+
+Mohon info detailnya ya 🙏`;
+
+                window.open(`https://wa.me/6285162930474?text=${encodeURIComponent(text)}`, "_blank");
+            }
+
+            lucide.createIcons();
+        </script>
+    </body>
+</html>

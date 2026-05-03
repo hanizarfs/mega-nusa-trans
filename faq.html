@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Title -->
-        <title>Rute - Mega Nusa Trans</title>
+        <title>FAQ - Mega Nusa Trans</title>
 
         <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 
@@ -84,10 +84,10 @@
                 <nav class="hidden md:flex items-center gap-8 font-medium text-white">
                     <a href="index.html" class="hover:opacity-80 transition">Beranda</a>
                     <a href="layanan.html" class="hover:opacity-80 transition">Layanan</a>
-                    <a href="#" class="hover:opacity-80 transition">Rute</a>
+                    <a href="rute.html" class="hover:opacity-80 transition">Rute</a>
                     <a href="tentang.html" class="hover:opacity-80 transition">Tentang</a>
                     <a href="kontak.html" class="hover:opacity-80 transition">Kontak</a>
-                    <a href="faq.html" class="hover:opacity-80 transition">FAQ</a>
+                    <a href="#" class="hover:opacity-80 transition">FAQ</a>
                 </nav>
 
                 <!-- CTA + LOGIN -->
@@ -115,10 +115,10 @@
                 <nav class="flex flex-col gap-4 font-medium">
                     <a href="index.html" class="hover:opacity-80">Beranda</a>
                     <a href="layanan.html" class="hover:opacity-80">Layanan</a>
-                    <a href="#" class="hover:opacity-80">Rute</a>
+                    <a href="rute.html" class="hover:opacity-80">Rute</a>
                     <a href="tentang.html" class="hover:opacity-80">Tentang</a>
                     <a href="kontak.html" class="hover:opacity-80">Kontak</a>
-                    <a href="faq.html" class="hover:opacity-80">FAQ</a>
+                    <a href="#" class="hover:opacity-80">FAQ</a>
 
                     <div class="flex items-center gap-3 mt-2">
                         <!-- CTA MOBILE -->
@@ -136,127 +136,116 @@
             </div>
         </header>
 
-        <!-- MAIN CONTENT -->
-        <main class="pt-32">
-            <div
-                x-data="{
-                    search: '',
-                    cards: [
-                        {rute:'Solo – Surabaya', desc:'Perjalanan nyaman & cepat', harga:'Rp 250.000', rating:5},
-                        {rute:'Solo – Malang', desc:'Travel favorit ke Malang', harga:'Rp 300.000', rating:4},
-                        {rute:'Solo – Blitar', desc:'Solusi praktis ke Blitar', harga:'Rp 250.000', rating:4},
-                        {rute:'Solo – Kediri', desc:'Nyaman & aman', harga:'Rp 270.000', rating:4},
-                        {rute:'Solo – Jember', desc:'Perjalanan jauh tetap nyaman', harga:'Rp 320.000', rating:5},
-                        {rute:'Solo – Pasuruan', desc:'Rute cepat & efisien', harga:'Rp 300.000', rating:4},
-                        {rute:'Solo – Lamongan', desc:'Jadwal fleksibel', harga:'Rp 280.000', rating:3},
-                        {rute:'Solo – Jakarta', desc:'Perjalanan antar kota besar', harga:'Rp 500.000', rating:5},
-                        {rute:'Solo – Bali', desc:'Trip jauh dengan nyaman', harga:'Rp 700.000', rating:5}
-                    ],
-                    get filtered() {
-                        if (!this.search) return this.cards
-                        return this.cards.filter(c =>
-                            c.rute.toLowerCase().includes(this.search.toLowerCase())
-                        )
-                    }
-                }"
-                x-init="
-                    $nextTick(() => lucide.createIcons());
-                    $watch('filtered', () => {
-                        $nextTick(() => lucide.createIcons());
-                    });
-                "
-            >
-                <!-- HERO -->
-                <section class="mb-12">
+        <main class="pt-32 pb-24 bg-gradient-to-b from-white to-gray-50">
+            <div class="max-w-4xl mx-auto px-4">
+                <section class="mb-16">
                     <div class="max-w-7xl mx-auto px-4 text-center">
                         <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">
-                            Semua
-                            <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent"> Rute Perjalanan </span>
+                            Pertanyaan yang Sering
+                            <span class="bg-gradient-to-r from-primary via-sky-500 to-primary bg-clip-text text-transparent"> Ditanyakan </span>
                         </h1>
 
-                        <p class="text-gray-500 max-w-2xl mx-auto text-lg mb-8">Temukan berbagai pilihan rute travel terbaik dengan harga terjangkau dan jadwal fleksibel.</p>
-
-                        <!-- SEARCH -->
-                        <div class="max-w-xl mx-auto relative mb-4">
-                            <input type="text" x-model="search" placeholder="Cari rute... (contoh: Solo, Surabaya)" class="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-primary text-sm transition-all duration-300" />
-
-                            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
-                        </div>
+                        <p class="text-gray-500 max-w-2xl mx-auto text-lg mb-8">Temukan jawaban dari pertanyaan umum seputar layanan kami.</p>
                     </div>
                 </section>
 
-                <!-- LIST -->
-                <section class="pb-24">
-                    <div class="max-w-7xl mx-auto px-4">
-                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <template x-for="card in filtered" :key="card.rute">
-                                <div class="bg-white rounded-3xl p-6 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col group">
-                                    <!-- HEADER -->
-                                    <div class="flex items-center gap-3 mb-4">
-                                        <div class="w-12 h-12 flex items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition">
-                                            <i data-lucide="map" class="w-5 h-5"></i>
-                                        </div>
-
-                                        <h3 class="font-semibold text-lg text-gray-800">
-                                            <span x-text="card.rute"></span>
-                                        </h3>
-                                    </div>
-
-                                    <!-- DESC -->
-                                    <p class="text-gray-500 text-sm mb-4 flex-1 leading-relaxed" x-text="card.desc"></p>
-
-                                    <!-- RATING -->
-                                    <div class="flex items-center mb-4">
-                                        <div class="flex">
-                                            <template x-for="i in 5">
-                                                <i data-lucide="star" :class="i <= card.rating ? 'w-4 h-4 text-yellow-400' : 'w-4 h-4 text-gray-300'"></i>
-                                            </template>
-                                        </div>
-                                        <span class="text-gray-400 text-sm ml-2" x-text="card.rating + '.0'"></span>
-                                    </div>
-
-                                    <!-- HARGA -->
-                                    <div class="flex items-center gap-2 text-primary font-semibold mb-5">
-                                        <i data-lucide="wallet" class="w-4 h-4"></i>
-                                        <span x-text="card.harga"></span>
-                                    </div>
-
-                                    <!-- BUTTON -->
-                                    <div class="flex gap-3 mt-auto">
-                                        <a href="detail-rute.html" class="flex-1 text-center bg-gray-100 text-gray-700 px-3 py-2 rounded-xl hover:bg-gray-200 transition font-semibold text-sm"> Detail </a>
-
-                                        <a
-                                            href="#"
-                                            @click.prevent="
-                                                let pesan = `Halo Admin 👋
-        Saya ingin pesan travel:
-        
-        📍 Rute: ${card.rute}
-        💰 Harga: ${card.harga}
-        
-        Mohon info lebih lanjut ya 🙏`;
-                                                window.open(`https://wa.me/6285162930474?text=${encodeURIComponent(pesan)}`, '_blank')
-                                            "
-                                            class="flex-1 inline-flex items-center justify-center border border-primary/40 text-primary font-semibold text-sm px-3 py-2 rounded-xl hover:text-white hover:bg-primary transition-all duration-300 group/btn"
-                                        >
-                                            Pesan
-                                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1 transition-transform duration-300 group-hover/btn:translate-x-1"></i>
-                                        </a>
-                                    </div>
+                <!-- FAQ -->
+                <div x-data="{active: null}" class="space-y-4">
+                    <!-- ITEM -->
+                    <div class="bg-white rounded-3xl shadow-md hover:shadow-xl transition border border-gray-100">
+                        <button @click="active === 1 ? active = null : active = 1" class="w-full flex justify-between items-center p-6 text-left group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition">
+                                    <i data-lucide="help-circle" class="w-5 h-5"></i>
                                 </div>
-                            </template>
-                        </div>
 
-                        <!-- EMPTY STATE -->
-                        <div x-show="filtered.length === 0" class="text-center py-24 text-gray-500">
-                            <i data-lucide="search-x" class="w-10 h-10 mx-auto mb-3"></i>
+                                <span class="font-semibold text-gray-800"> Bagaimana cara memesan travel? </span>
+                            </div>
 
-                            <p class="text-lg font-medium">Rute tidak ditemukan</p>
+                            <i data-lucide="chevron-down" :class="active === 1 ? 'rotate-180 text-primary' : 'text-gray-400'" class="w-5 h-5 transition duration-300"> </i>
+                        </button>
 
-                            <p class="text-sm text-gray-400 mt-1">Coba gunakan kata kunci lain</p>
-                        </div>
+                        <div x-show="active === 1" x-transition x-cloak class="pt-4 px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t">Anda bisa langsung memilih rute di halaman utama, lalu klik tombol pesan dan akan diarahkan ke WhatsApp admin.</div>
                     </div>
-                </section>
+
+                    <!-- ITEM -->
+                    <div class="bg-white rounded-3xl shadow-md hover:shadow-xl transition border border-gray-100">
+                        <button @click="active === 2 ? active = null : active = 2" class="w-full flex justify-between items-center p-6 text-left group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+
+                                <span class="font-semibold text-gray-800"> Apakah bisa dijemput dari rumah? </span>
+                            </div>
+
+                            <i data-lucide="chevron-down" :class="active === 2 ? 'rotate-180 text-primary' : 'text-gray-400'" class="w-5 h-5 transition duration-300"> </i>
+                        </button>
+
+                        <div x-show="active === 2" x-transition x-cloak class="pt-4 px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t">Ya, kami menyediakan layanan door-to-door sehingga Anda akan dijemput langsung dari lokasi Anda.</div>
+                    </div>
+
+                    <!-- ITEM -->
+                    <div class="bg-white rounded-3xl shadow-md hover:shadow-xl transition border border-gray-100">
+                        <button @click="active === 3 ? active = null : active = 3" class="w-full flex justify-between items-center p-6 text-left group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition">
+                                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                                </div>
+
+                                <span class="font-semibold text-gray-800"> Bagaimana cara pembayaran? </span>
+                            </div>
+
+                            <i data-lucide="chevron-down" :class="active === 3 ? 'rotate-180 text-primary' : 'text-gray-400'" class="w-5 h-5 transition duration-300"> </i>
+                        </button>
+
+                        <div x-show="active === 3" x-transition x-cloak class="pt-4 px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t">Pembayaran bisa dilakukan melalui transfer bank atau langsung ke driver sesuai kesepakatan dengan admin.</div>
+                    </div>
+
+                    <!-- ITEM -->
+                    <div class="bg-white rounded-3xl shadow-md hover:shadow-xl transition border border-gray-100">
+                        <button @click="active === 4 ? active = null : active = 4" class="w-full flex justify-between items-center p-6 text-left group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition">
+                                    <i data-lucide="package" class="w-5 h-5"></i>
+                                </div>
+
+                                <span class="font-semibold text-gray-800"> Apakah bisa kirim paket? </span>
+                            </div>
+
+                            <i data-lucide="chevron-down" :class="active === 4 ? 'rotate-180 text-primary' : 'text-gray-400'" class="w-5 h-5 transition duration-300"> </i>
+                        </button>
+
+                        <div x-show="active === 4" x-transition x-cloak class="pt-4 px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t">Bisa. Kami melayani pengiriman paket antar kota dengan cepat dan aman.</div>
+                    </div>
+
+                    <!-- ITEM -->
+                    <div class="bg-white rounded-3xl shadow-md hover:shadow-xl transition border border-gray-100">
+                        <button @click="active === 5 ? active = null : active = 5" class="w-full flex justify-between items-center p-6 text-left group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition">
+                                    <i data-lucide="clock" class="w-5 h-5"></i>
+                                </div>
+
+                                <span class="font-semibold text-gray-800"> Apakah jadwal fleksibel? </span>
+                            </div>
+
+                            <i data-lucide="chevron-down" :class="active === 5 ? 'rotate-180 text-primary' : 'text-gray-400'" class="w-5 h-5 transition duration-300"> </i>
+                        </button>
+
+                        <div x-show="active === 5" x-transition x-cloak class="pt-4 px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t">Ya, kami memiliki jadwal rutin namun tetap fleksibel sesuai kebutuhan pelanggan.</div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-20 text-center">
+                    <p class="text-gray-500 mb-6 text-lg">Masih punya pertanyaan?</p>
+
+                    <a href="https://wa.me/6285162930474" class="inline-flex items-center gap-2 bg-secondary text-black px-6 py-3 rounded-xl font-semibold hover:shadow-xl transition">
+                        Chat WhatsApp
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
             </div>
         </main>
 
@@ -365,96 +354,6 @@
 
         <script>
             lucide.createIcons();
-        </script>
-
-        <!-- FLOATING BUTTON -->
-        <button id="waButton" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-2xl z-50 transition">
-            <i class="bi bi-whatsapp"></i>
-        </button>
-
-        <!-- CHAT POPUP -->
-        <div id="waPopup" class="fixed bottom-24 right-6 w-80 bg-white rounded-2xl shadow-2xl overflow-hidden hidden z-50">
-            <!-- HEADER -->
-            <div class="bg-green-500 text-white p-4 flex justify-between items-center">
-                <div>
-                    <h3 class="font-semibold">Admin</h3>
-                    <p class="text-xs opacity-80">Biasanya balas cepat</p>
-                </div>
-                <button id="closePopup" class="text-white text-xl">&times;</button>
-            </div>
-
-            <!-- CHAT BODY -->
-            <div class="p-4 space-y-3 bg-gray-50">
-                <div class="bg-white p-3 rounded-xl shadow text-sm">
-                    Halo 👋<br />
-                    Ada yang bisa kami bantu?
-                </div>
-
-                <!-- QUICK MESSAGE -->
-                <button class="quickMsg w-full text-left bg-white p-3 rounded-xl shadow text-sm hover:bg-gray-100">Saya ingin bertanya tentang layanan travel</button>
-
-                <button class="quickMsg w-full text-left bg-white p-3 rounded-xl shadow text-sm hover:bg-gray-100">Berapa harga travel dari Solo ke Surabaya?</button>
-            </div>
-
-            <!-- INPUT -->
-            <div class="p-3 border-t flex gap-2">
-                <input id="waInput" type="text" placeholder="Tulis pesan..." class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none" />
-
-                <button id="sendWa" class="bg-green-500 hover:bg-green-600 text-white px-4 rounded-lg">Kirim</button>
-            </div>
-        </div>
-
-        <!-- BOOTSTRAP ICON -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-
-        <script>
-            const waButton = document.getElementById("waButton");
-            const waPopup = document.getElementById("waPopup");
-            const closePopup = document.getElementById("closePopup");
-            const sendWa = document.getElementById("sendWa");
-            const waInput = document.getElementById("waInput");
-            const quickMsgs = document.querySelectorAll(".quickMsg");
-
-            const phone = "6285162930474";
-
-            // OPEN POPUP
-            waButton.onclick = () => {
-                waPopup.classList.toggle("hidden");
-            };
-
-            // CLOSE POPUP
-            closePopup.onclick = () => {
-                waPopup.classList.add("hidden");
-            };
-
-            // QUICK MESSAGE CLICK
-            quickMsgs.forEach((btn) => {
-                btn.onclick = () => {
-                    waInput.value = btn.innerText;
-                };
-            });
-
-            // SEND TO WHATSAPP
-            sendWa.onclick = () => {
-                let message = waInput.value.trim();
-
-                if (!message) {
-                    alert("Isi pesan dulu ya 😊");
-                    return;
-                }
-
-                let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-                window.open(url, "_blank");
-            };
-        </script>
-
-        <!-- FIX LUICDE ICON -->
-        <script>
-            document.addEventListener("alpine:init", () => {
-                Alpine.effect(() => {
-                    setTimeout(() => lucide.createIcons(), 0);
-                });
-            });
         </script>
     </body>
 </html>

@@ -7,6 +7,8 @@
         <!-- Title -->
         <title>Beranda - Mega Nusa Trans</title>
 
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
         <!-- Tailwind CSS -->
         <script src="https://cdn.tailwindcss.com"></script>
 
@@ -42,6 +44,7 @@
             main,
             section {
                 overflow-x: hidden;
+                scroll-behavior: smooth;
             }
         </style>
 
@@ -81,17 +84,18 @@
                 </a>
                 <!-- MENU DESKTOP -->
                 <nav class="hidden md:flex items-center gap-8 font-medium transition" :class="scrolled ? 'text-white' : 'text-white'">
-                    <a href="index.html" class="hover:opacity-80 transition">Beranda</a>
-                    <a href="#" class="hover:opacity-80 transition">Layanan</a>
+                    <a href="#beranda" class="hover:opacity-80 transition">Beranda</a>
+                    <a href="layanan.html" class="hover:opacity-80 transition">Layanan</a>
                     <a href="rute.html" class="hover:opacity-80 transition">Rute</a>
-                    <a href="#" class="hover:opacity-80 transition">Testimoni</a>
-                    <a href="#" class="hover:opacity-80 transition">Tentang</a>
+                    <a href="tentang.html" class="hover:opacity-80 transition">Tentang</a>
+                    <a href="kontak.html" class="hover:opacity-80 transition">Kontak</a>
+                    <a href="faq.html" class="hover:opacity-80 transition">FAQ</a>
                 </nav>
 
                 <!-- CTA + LOGIN -->
                 <div class="hidden md:flex items-center gap-3">
                     <!-- BUTTON PESAN -->
-                    <a href="#" class="group inline-flex items-center gap-2 bg-secondary text-black font-semibold px-5 py-2 rounded-lg transition-all duration-300 hover:shadow-xl hover:bg-gradient-to-r hover:from-secondary hover:via-yellow-300 hover:to-secondary">
+                    <a href="booking.html" class="group inline-flex items-center gap-2 bg-secondary text-black font-semibold px-5 py-2 rounded-lg transition-all duration-300 hover:shadow-xl hover:bg-gradient-to-r hover:from-secondary hover:via-yellow-300 hover:to-secondary">
                         <span>Pesan Sekarang</span>
 
                         <i data-lucide="send" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"> </i>
@@ -118,15 +122,16 @@
             <!-- MOBILE MENU -->
             <div x-show="open" x-transition @click.away="open=false" class="md:hidden shadow-lg px-4 pb-4 transition" :class="scrolled ? 'bg-primary text-white' : 'bg-white text-gray-700'">
                 <nav class="flex flex-col gap-4 font-medium">
-                    <a href="#" class="hover:opacity-80">Beranda</a>
-                    <a href="#" class="hover:opacity-80">Layanan</a>
-                    <a href="#" class="hover:opacity-80">Rute</a>
-                    <a href="#" class="hover:opacity-80">Testimoni</a>
-                    <a href="#" class="hover:opacity-80">Tentang</a>
+                    <a href="#beranda" class="hover:opacity-80">Beranda</a>
+                    <a href="layanan.html" class="hover:opacity-80">Layanan</a>
+                    <a href="rute.html" class="hover:opacity-80">Rute</a>
+                    <a href="tentang.html" class="hover:opacity-80">Tentang</a>
+                    <a href="kontak.html" class="hover:opacity-80">Kontak</a>
+                    <a href="faq.html" class="hover:opacity-80">FAQ</a>
 
                     <div class="flex items-center gap-3">
                         <!-- CTA MOBILE -->
-                        <a href="#" class="group inline-flex items-center gap-2 bg-secondary text-black font-semibold px-5 py-2 rounded-lg transition-all duration-300 hover:shadow-xl hover:bg-gradient-to-r hover:from-secondary hover:via-yellow-300 hover:to-secondary">
+                        <a href="booking.html" class="group inline-flex items-center gap-2 bg-secondary text-black font-semibold px-5 py-2 rounded-lg transition-all duration-300 hover:shadow-xl hover:bg-gradient-to-r hover:from-secondary hover:via-yellow-300 hover:to-secondary">
                             <span>Pesan Sekarang</span>
 
                             <i data-lucide="send" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"> </i>
@@ -182,17 +187,17 @@
                         current: 0,
                         slides: [
                             {
-                                image: "http://mega-nusa-travel.test/assets/images/landingpage/hero-1.webp",
+                                image: "assets/hero-1.webp",
                                 title: 'Travel Antar Kota <span class="text-secondary">Tanpa Ribet</span>',
                                 subtitle: "Berangkat langsung dari rumah tanpa perlu ke terminal.",
                             },
                             {
-                                image: "http://mega-nusa-travel.test/assets/images/landingpage/hero-2.webp",
+                                image: "assets/hero-2.webp",
                                 title: 'Perjalanan <span class="text-secondary">Lebih Tenang</span>',
                                 subtitle: "Driver berpengalaman dan armada selalu terawat.",
                             },
                             {
-                                image: "http://mega-nusa-travel.test/assets/images/landingpage/hero-3.webp",
+                                image: "assets/hero-3.webp",
                                 title: 'Butuh Travel <span class="text-secondary">Hari Ini?</span>',
                                 subtitle: "Cek jadwal dan booking sekarang juga dengan cepat.",
                             },
@@ -324,7 +329,7 @@
             <script>
                 function bookingForm() {
                     return {
-                        kotaList: ["Bandung", "Ciamis"],
+                        kotaList: ["Solo", "Surabaya", "Malang", "Blitar", "Kediri", "Jember", "Pasuruan", "Lamongan", "Jakarta", "Bali"],
                         today: "",
                         services: ["perjalanan antar kota yang nyaman", "pengiriman paket cepat dan aman", "carter mobil fleksibel dengan sopir", "layanan door-to-door tanpa ribet"],
                         currentService: 0,
@@ -437,7 +442,7 @@
             </script>
 
             <!-- CARA PEMESANAN -->
-            <section class="pt-24 pb-20 bg-gradient-to-b from-gray-200/75 to-white">
+            <section class="pt-24 pb-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4">
                     <!-- HEADER -->
                     <div class="text-center mx-auto mb-16">
@@ -508,7 +513,7 @@
             </section>
 
             <!-- KEUNGGULAN -->
-            <section class="py-20 bg-gradient-to-b from-white to-gray-200/75">
+            <section class="py-20 bg-gray-200/75">
                 <div class="max-w-7xl mx-auto px-4">
                     <!-- HEADER -->
                     <div class="text-center mx-auto mb-16">
@@ -576,7 +581,7 @@
             </section>
 
             <!-- LAYANAN -->
-            <section class="py-20 bg-gradient-to-b from-gray-200/75 to-white">
+            <section class="py-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4">
                     <!-- HEADER -->
                     <div class="text-center mx-auto mb-16">
@@ -638,7 +643,7 @@
             </section>
 
             <!-- RUTE POPULER MODERN -->
-            <section class="py-20 bg-gradient-to-b from-white to-gray-200/75">
+            <section class="py-20 bg-gray-200/75">
                 <div class="max-w-7xl mx-auto px-4">
                     <!-- HEADER -->
                     <div class="text-center mx-auto mb-16">
@@ -742,7 +747,7 @@ Mohon info lebih lanjut ya 🙏`;
             </script>
 
             <!-- TESTIMONI CAROUSEL -->
-            <section class="py-20 bg-gradient-to-b from-white to-gray-200/75">
+            <section class="py-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4">
                     <!-- HEADER -->
                     <div class="text-center mx-auto mb-16">
@@ -864,8 +869,8 @@ Mohon info lebih lanjut ya 🙏`;
                 });
             </script>
 
-            <!-- CTA FINAL -->
-            <section class="py-20 bg-gradient-to-b from-gray-200/75 to-white">
+            <!-- CTA -->
+            <section class="py-20 bg-gray-200/75">
                 <div class="max-w-7xl mx-auto px-4">
                     <div class="bg-gradient-to-br from-blue-500 via-primary to-primary text-white relative overflow-hidden rounded-2xl shadow-xl">
                         <!-- DECOR -->
@@ -881,7 +886,20 @@ Mohon info lebih lanjut ya 🙏`;
                             <p p class="text-slate-100 text-base md:text-lg leading-relaxed mb-6">Pesan sekarang dan nikmati perjalanan yang aman, nyaman, dan tepat tujuan bersama Mega Nusa Trans.</p>
 
                             <!-- BUTTON -->
-                            <a href="#" class="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+                            <a
+                                href="#"
+                                @click.prevent="
+                                    let pesan = `Halo Admin 👋
+Saya ingin pesan travel:
+
+📍 Rute: ${card.rute}
+💰 Harga: ${card.harga}
+
+Mohon info lebih lanjut ya 🙏`;
+                                    window.open(`https://wa.me/6285162930474?text=${encodeURIComponent(pesan)}`, '_blank')
+                                   "
+                                class="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                            >
                                 <i class="bi bi-whatsapp text-xl"></i>
                                 Chat WhatsApp Sekarang
                             </a>
@@ -893,51 +911,105 @@ Mohon info lebih lanjut ya 🙏`;
 
         <!-- FOOTER -->
         <footer class="bg-primary text-gray-300 pt-16">
-            <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-10">
+            <div class="max-w-7xl mx-auto px-4 grid gap-10 md:grid-cols-[2.2fr_0.5fr_1.2fr_1.3fr]">
                 <!-- BRANDING -->
                 <div>
-                    <h3 class="text-xl font-bold text-white mb-3">Mega Nusa Trans</h3>
-                    <p class="text-sm mb-2 text-gray-200">Banjarnegara – Surabaya</p>
-                    <p class="text-sm text-gray-300">Aman, Nyaman, Tepat Tujuan</p>
+                    <!-- TITLE -->
+                    <h3 class="text-2xl font-bold text-white mb-3">Mega Nusa Trans</h3>
+
+                    <!-- DESCRIPTION -->
+                    <p class="text-sm text-gray-200 mb-5 leading-relaxed max-w-sm">Layanan travel antar kota terpercaya dengan sistem door-to-door. Siap mengantarkan Anda dengan aman, nyaman, dan tepat waktu.</p>
+
+                    <!-- SOSIAL MEDIA -->
+                    <div class="flex items-center gap-3 text-lg">
+                        <!-- FACEBOOK -->
+                        <a href="https://facebook.com/meganusatrans" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-blue-600 transition">
+                            <i class="bi bi-facebook text-white"></i>
+                        </a>
+
+                        <!-- INSTAGRAM -->
+                        <a href="https://instagram.com/meganusatrans" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-pink-500 transition">
+                            <i class="bi bi-instagram text-white"></i>
+                        </a>
+
+                        <!-- TIKTOK -->
+                        <a href="https://tiktok.com/@meganusatrans" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-black transition">
+                            <i class="bi bi-tiktok text-white"></i>
+                        </a>
+
+                        <!-- EMAIL -->
+                        <a href="mailto:admin@meganusatrans.com" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-gray-600 transition">
+                            <i class="bi bi-envelope text-white"></i>
+                        </a>
+                    </div>
+
+                    <!-- MAP -->
+                    <div class="mt-6 rounded-xl overflow-hidden shadow-lg border border-white/10">
+                        <iframe src="https://www.google.com/maps?q=Surakarta&output=embed" class="w-full h-40 border-0" loading="lazy"> </iframe>
+                    </div>
                 </div>
 
                 <!-- MENU -->
                 <div>
                     <h4 class="text-white font-semibold mb-3">Menu</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-secondary transition">Beranda</a></li>
-                        <li><a href="#" class="hover:text-secondary transition">Layanan</a></li>
-                        <li><a href="#" class="hover:text-secondary transition">Rute</a></li>
-                        <li><a href="#" class="hover:text-secondary transition">Testimoni</a></li>
-                        <li><a href="#" class="hover:text-secondary transition">Tentang</a></li>
+                        <li><a href="#" class="hover:text-secondary">Beranda</a></li>
+                        <li><a href="layanan.html" class="hover:text-secondary">Layanan</a></li>
+                        <li><a href="rute.html" class="hover:text-secondary">Rute</a></li>
+                        <li><a href="tentang.html" class="hover:text-secondary">Tentang</a></li>
+                        <li><a href="kontak.html" class="hover:text-secondary">Kontak</a></li>
+                        <li><a href="faq.html" class="hover:text-secondary">FAQ</a></li>
                     </ul>
                 </div>
 
-                <!-- KONTAK -->
+                <!-- INFO SINGKAT -->
                 <div>
-                    <h4 class="text-white font-semibold mb-3">Kontak</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li>
-                            📞
-                            <a href="#" class="hover:text-secondary transition"> WhatsApp: 08xxxxxxxxxx </a>
+                    <h4 class="text-white font-semibold mb-3">Informasi</h4>
+
+                    <ul class="space-y-3 text-sm">
+                        <!-- EMAIL -->
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="bi bi-envelope text-lg text-secondary"></i>
+                            <span>admin@meganusatrans.com</span>
                         </li>
-                        <li>📍 Lokasi: Banjarnegara</li>
-                        <li>⏰ Jam Operasional: 24 Jam</li>
+
+                        <!-- TELEPON -->
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="bi bi-telephone text-lg text-secondary"></i>
+                            <span>0812-3456-789</span>
+                        </li>
+
+                        <!-- JAM OPERASIONAL -->
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="bi bi-clock text-lg text-secondary"></i>
+                            <span>24 Jam Setiap Hari</span>
+                        </li>
+
+                        <!-- AREA LAYANAN -->
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="bi bi-geo-alt text-lg text-secondary"></i>
+                            <span>Jawa Tengah & Sekitarnya</span>
+                        </li>
+
+                        <!-- SUPPORT -->
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="bi bi-headset text-lg text-secondary"></i>
+                            <span>Customer Support Aktif</span>
+                        </li>
                     </ul>
                 </div>
 
-                <!-- DESKRIPSI -->
+                <!-- INFO -->
                 <div>
-                    <h4 class="text-white font-semibold mb-3">Tentang Layanan</h4>
-                    <p class="text-sm text-gray-300 leading-relaxed">Layanan travel, carter mobil, dan pengiriman paket terpercaya dengan sistem door-to-door yang memudahkan perjalanan Anda.</p>
+                    <h4 class="text-white font-semibold mb-3">Layanan</h4>
+                    <p class="text-sm text-gray-300 leading-relaxed">Melayani travel reguler, carter mobil, dan pengiriman paket dengan sistem door-to-door yang praktis dan terpercaya.</p>
+
+                    <a href="rute.html" class="inline-block mt-4 px-4 py-2 bg-secondary text-black rounded-lg text-sm font-semibold hover:shadow-lg"> Pesan Sekarang </a>
                 </div>
             </div>
 
             <!-- COPYRIGHT -->
-            <div class="mt-12 border-t border-white/20 py-6 text-center text-sm text-gray-300">
-                Mega Nusa Trans | Banjarnegara - Surabaya | Aman, Nyaman, Tepat Tujuan <br />
-                © Copyright 2024, Mega Nusa Trans
-            </div>
+            <div class="mt-12 border-t border-gray-200/20 py-4 text-center text-sm text-gray-300 bg-[#0815cc]">© Mega Nusa Trans - Semua Hak Dilindungi</div>
         </footer>
 
         <script>
